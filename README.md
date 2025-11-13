@@ -25,20 +25,6 @@ UNRELEASED
 
 </div>
 
-
-## Feature List
-- Detailed player logs
-- Detailed server information (Thanks to [RoValra](https://www.rovalra.com/))
-- Studio Support
-- Flag editor (Roblox Studio only)
-- Framerate cap unlocking
-- Global Settings page
-- Custom Fishstrap game invite links
-- Cache cleaner
-- Channel changer
-
-And many more!
-
 <div align="center">
     <img src="" width="420">
 </div>
