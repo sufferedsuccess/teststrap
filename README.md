@@ -12,7 +12,8 @@ Teststrap is currently being tested.
 
 UNTESTED, STILL IN DEVELOPMENT
 
-[The one and only build.](https://pages.github.com/)
+[The one and only build.](https://github.com/sufferedsuccess/teststrap/releases/v0.0.1.1)
+[DIRECT DOWNLOAD HERE](https://github.com/sufferedsuccess/teststrap/releases/download/v0.0.1.1/Teststrap-x64.exe)
 
 <div align="center">
 
