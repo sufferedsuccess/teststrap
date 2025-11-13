@@ -49,11 +49,11 @@ And many more!
 [badge-repo-latest]:     https://img.shields.io/github/v/release/sufferedsuccess/teststrap?style=flat-square&color=7a39fb
 [badge-repo-stars]:      https://img.shields.io/github/stars/sufferedsuccess/teststrap?style=flat-square&color=dd9900
 
-[badge-discord]: https://img.shields.io/discord/1299397064165429360?style=flat-square&logo=discord&logoColor=white&logoSize=auto&label=discord&color=4d3dff
+[badge-discord]: https://img.shields.io/badge/sufferedsuccess-444444
 
 [repo-license]:  https://github.com/sufferedsuccess/teststrap/blob/main/LICENSE
 [repo-actions]:  https://github.com/sufferedsuccess/teststrap/actions
 [repo-releases]: https://github.com/sufferedsuccess/teststrap/releases
 [repo-latest]:   https://github.com/sufferedsuccess/teststrap/releases/latest
 
-[discord-user]:  [https://discord.com/users/1358412678783045777]
+[discord-user]:  https://discord.com/users/1358412678783045777
