@@ -1447,6 +1447,9 @@ Isarado muna ang kahit anong application na maaaring gamitin ang mga file ng Rob
   <data name="Enums.CursorType.Inverted" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="Menu.FastFlags.Presets.EscapeMenuVersion.Title" xml:space="preserve">
     <value>Bersyon ng escape menu na naayon sa iyong panlasa</value>
   </data>
@@ -1499,12 +1502,6 @@ Isarado muna ang kahit anong application na maaaring gamitin ang mga file ng Rob
     <value />
   </data>
   <data name="Menu.GBSEditor.Graphics.Description" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="Menu.About.Contributors.Description3" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
 </root>

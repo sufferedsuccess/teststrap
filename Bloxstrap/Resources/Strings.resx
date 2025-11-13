@@ -408,7 +408,7 @@ Would you like to upgrade your currently installed version?</value>
     <value>Code</value>
   </data>
   <data name="Menu.About.Contributors.Description" xml:space="preserve">
-    <value>Most people here have made notable contributions to Bloxstrap, helping make it what it is.</value>
+    <value>These are the people who have made notable contributions to Bloxstrap/Fishstrap, helping make it what it is.</value>
   </data>
   <data name="Menu.About.Contributors.FeatureIdeas" xml:space="preserve">
     <value>Feature Ideas</value>
@@ -1794,9 +1794,6 @@ Defaulting to {1}.</value>
     <value>Inverted</value>
   </data>
   <data name="Menu.About.Contributors.Description2" xml:space="preserve">
-    <value>Only 3 people have contributed to Fishstrap, and it is return_request (returnrqt), bloodraven (bloodrvn) and kezcn (roblox_user_4401881748). </value>
-  </data>
-  <data name="Menu.About.Contributors.Description3" xml:space="preserve">
     <value>And I, sufferedsuccess, made Teststrap.</value>
   </data>
 </root>

@@ -2655,7 +2655,7 @@ namespace Bloxstrap.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Most people here have made notable contributions to Bloxstrap, helping make it what it is..
+        ///   Looks up a localized string similar to These are the people who have made notable contributions to Bloxstrap/Fishstrap, helping make it what it is..
         /// </summary>
         public static string Menu_About_Contributors_Description {
             get {
@@ -2664,20 +2664,11 @@ namespace Bloxstrap.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only 3 people have contributed to Fishstrap, and it is return_request (returnrqt), bloodraven (bloodrvn) and kezcn (roblox_user_4401881748). .
+        ///   Looks up a localized string similar to And I, sufferedsuccess, made Teststrap..
         /// </summary>
         public static string Menu_About_Contributors_Description2 {
             get {
                 return ResourceManager.GetString("Menu.About.Contributors.Description2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to And I, sufferedsuccess, made Teststrap..
-        /// </summary>
-        public static string Menu_About_Contributors_Description3 {
-            get {
-                return ResourceManager.GetString("Menu.About.Contributors.Description3", resourceCulture);
             }
         }
         

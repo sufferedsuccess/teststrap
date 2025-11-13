@@ -1435,6 +1435,9 @@ Bloxstrap 已安裝在 "{1}"。</value>
   <data name="Enums.CursorType.Inverted" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="Menu.FastFlags.Presets.EscapeMenuVersion.Title" xml:space="preserve">
     <value>首選的ESC選單版本</value>
   </data>
@@ -1508,11 +1511,5 @@ Bloxstrap 已安裝在 "{1}"。</value>
   <data name="Menu.Bloxstrap.ExportData.ExportLogs" xml:space="preserve">
     <value>所有 Bloxstrap 日誌</value>
     <comment>Label that appears next to a checkbox</comment>
-  </data>
-  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="Menu.About.Contributors.Description3" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
 </root>
