@@ -16,13 +16,13 @@ namespace Bloxstrap
 #if QA_BUILD
         public const string ProjectName = "Fishstrap-QA";
 #else
-        public const string ProjectName = "Fishstrap";
+        public const string ProjectName = "Teststrap";
 #endif
-        public const string ProjectOwner = "returnrqt";
-        public const string ProjectRepository = "returnrqt/fishstrap";
-        public const string ProjectDownloadLink = "https://github.com/returnrqt/fishstrap/releases";
+        public const string ProjectOwner = "sufferedsuccess";
+        public const string ProjectRepository = "sufferedsuccess/teststrap";
+        public const string ProjectDownloadLink = "https://github.com/sufferedsuccess/teststrap/releases";
         public const string ProjectHelpLink = "https://github.com/bloxstraplabs/bloxstrap/wiki";
-        public const string ProjectSupportLink = "https://github.com/returnrqt/fishstrap/issues/new";
+        public const string ProjectSupportLink = "https://github.com/sufferedsuccess/teststrap/issues/new";
         public const string ProjectRemoteDataLink = "https://config.fishstrap.app/v1/Data.json";
 
         public const string RobloxPlayerAppName = "RobloxPlayerBeta.exe";

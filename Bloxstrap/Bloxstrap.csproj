@@ -2,19 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Bloxstrap.ico</ApplicationIcon>
-    <Version>3.0.1.0</Version>
-    <FileVersion>3.0.1.0</FileVersion>
+    <Version>0.0.1.1</Version>
+    <FileVersion>0.0.1.2</FileVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-	<AssemblyName>Fishstrap</AssemblyName>
+	<AssemblyName>Teststrap</AssemblyName>
     <Product>$(AssemblyName)</Product>
     <RootNamespace>Bloxstrap</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,13 +48,21 @@
     <EmbeddedResource Include="Resources\Icon2017.ico" />
     <EmbeddedResource Include="Resources\Icon2019.ico" />
     <EmbeddedResource Include="Resources\Icon2022.ico" />
-	<EmbeddedResource Include="Resources\IconFishstrap.ico" />
     <EmbeddedResource Include="Resources\IconEarly2015.ico" />
     <EmbeddedResource Include="Resources\IconLate2015.ico" />
+	<EmbeddedResource Include="Resources\IconFishstrap.ico" />
+	<EmbeddedResource Include="Resources\OldIconBloxstrap.ico" />
+	<EmbeddedResource Include="Resources\OldIconBloxstrapClassic.ico" />
     <EmbeddedResource Include="Resources\Mods\Cursor\From2006\ArrowCursor.png" />
     <EmbeddedResource Include="Resources\Mods\Cursor\From2006\ArrowFarCursor.png" />
     <EmbeddedResource Include="Resources\Mods\Cursor\From2013\ArrowCursor.png" />
     <EmbeddedResource Include="Resources\Mods\Cursor\From2013\ArrowFarCursor.png" />
+	<EmbeddedResource Include="Resources\Mods\Cursor\Inverted\ArrowCursor.png" />
+	<EmbeddedResource Include="Resources\Mods\Cursor\Inverted\ArrowFarCursor.png" />
+	<EmbeddedResource Include="Resources\Mods\Cursor\Inverted\IBeamCursor.png" />
+	<EmbeddedResource Include="Resources\Mods\Cursor\Inverted\ActivatedCursor.png" />
+	<EmbeddedResource Include="Resources\Mods\Cursor\Inverted\HoverCursor.png" />
+	<EmbeddedResource Include="Resources\Mods\Cursor\Inverted\MouseLockedCursor.png" />
     <EmbeddedResource Include="Resources\Mods\Sounds\OldGetUp.mp3" />
     <EmbeddedResource Include="Resources\Mods\Sounds\OldJump.mp3" />
     <EmbeddedResource Include="Resources\Mods\Sounds\OldWalk.mp3" />

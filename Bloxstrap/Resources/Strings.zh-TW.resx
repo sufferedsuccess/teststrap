@@ -1464,6 +1464,9 @@ Fishstrap 安裝在 "{1}"。</value>
   <data name="About.Title" xml:space="preserve">
     <value>關於 Fishstrap</value>
   </data>
+  <data name="Enums.CursorType.Inverted" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="Menu.FastFlags.Presets.EscapeMenuVersion.Title" xml:space="preserve">
     <value>首選的ESC選單版本</value>
   </data>
@@ -1516,6 +1519,12 @@ Fishstrap 安裝在 "{1}"。</value>
     <value />
   </data>
   <data name="Menu.GBSEditor.Graphics.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.About.Contributors.Description3" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
 </root>

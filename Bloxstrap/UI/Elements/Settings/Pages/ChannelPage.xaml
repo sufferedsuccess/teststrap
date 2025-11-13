@@ -17,7 +17,7 @@
     <StackPanel Margin="0,0,14,14">
         <TextBlock Margin="0,0,0,8" Text="{x:Static resources:Strings.Menu_Channel_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
-        <TextBlock Text="Fishstrap" FontSize="16" FontWeight="Medium" Margin="0,16,0,0" />
+        <TextBlock Text="Teststrap" FontSize="16" FontWeight="Medium" Margin="0,16,0,0" />
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_Behaviour_AutoUpdate_Title}"
             Description="{x:Static resources:Strings.Menu_Behaviour_AutoUpdate_Description}">
