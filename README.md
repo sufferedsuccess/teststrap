@@ -18,7 +18,6 @@ UNTESTED, STILL IN DEVELOPMENT
 <div align="center">
 
 [![License][badge-repo-license]][repo-license]
-[![Workflow][badge-repo-workflow]][repo-actions]
 [![Downloads][badge-repo-downloads]][repo-releases]
 [![Version][badge-repo-latest]][repo-latest]
 [![User][badge-discord]][discord-user]
@@ -31,7 +30,6 @@ UNTESTED, STILL IN DEVELOPMENT
 </div>
 
 [badge-repo-license]:    https://img.shields.io/github/license/sufferedsuccess/teststrap?style=flat-square
-[badge-repo-workflow]:   https://img.shields.io/github/actions/workflow/status/sufferedsuccess/teststrap/ci-release.yml?branch=main&style=flat-square&label=builds
 [badge-repo-downloads]:  https://img.shields.io/github/downloads/sufferedsuccess/teststrap/latest/total?style=flat-square&color=981bfe
 [badge-repo-latest]:     https://img.shields.io/github/v/release/sufferedsuccess/teststrap?style=flat-square&color=7a39fb
 [badge-repo-stars]:      https://img.shields.io/github/stars/sufferedsuccess/teststrap?style=flat-square&color=dd9900
@@ -39,7 +37,6 @@ UNTESTED, STILL IN DEVELOPMENT
 [badge-discord]: https://img.shields.io/badge/sufferedsuccess-444444
 
 [repo-license]:  https://github.com/sufferedsuccess/teststrap/blob/main/LICENSE
-[repo-actions]:  https://github.com/sufferedsuccess/teststrap/actions
 [repo-releases]: https://github.com/sufferedsuccess/teststrap/releases
 [repo-latest]:   https://github.com/sufferedsuccess/teststrap/releases/latest
 
