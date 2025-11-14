@@ -12,8 +12,8 @@ Teststrap is currently being tested.
 
 UNTESTED, STILL IN DEVELOPMENT
 
-[Second build released](https://github.com/sufferedsuccess/teststrap/releases/v0.0.2.0)
-[64-bit DIRECT DOWNLOAD](https://github.com/sufferedsuccess/teststrap/releases/download/v0.0.2.0/Teststrap-x64.exe)
+[Second build released](https://github.com/sufferedsuccess/teststrap/releases/v0.0.2.0)<br>
+[64-bit DIRECT DOWNLOAD](https://github.com/sufferedsuccess/teststrap/releases/download/v0.0.2.0/Teststrap-x64.exe)<br>
 [32-bit DIRECT DOWNLOAD](https://github.com/sufferedsuccess/teststrap/releases/download/v0.0.2.0/Teststrap-x86.exe)
 
 <div align="center">
