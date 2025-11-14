@@ -14,7 +14,7 @@ namespace Bloxstrap
     public partial class App : Application
     {
 #if QA_BUILD
-        public const string ProjectName = "Fishstrap-QA";
+        public const string ProjectName = "Teststrap-QA";
 #else
         public const string ProjectName = "Teststrap";
 #endif

@@ -109,7 +109,7 @@ namespace Bloxstrap
             if (ImportSettings)
             {
                 // we dont have to worry about directories messing up
-                // if something doenst exist fishstrap will recreate the file/directory
+                // if something doesnt exist teststrap will recreate the file/directory
                 try
                 {
                     ImportSettingsFromBloxstrap();
@@ -692,7 +692,7 @@ namespace Bloxstrap
 
                 if (IsDirectory)
                 {
-                    // delete existing file from fishstrap folder
+                    // delete existing file from teststrap folder
                     string ExistingFile = Path.Combine(InstallLocation, FileName);
                     if (Directory.Exists(ExistingFile))
                     {

@@ -57,7 +57,6 @@ namespace Bloxstrap.Extensions
 
             return icon switch
             {
-                //BootstrapperIcon.IconFishstrap => Properties.Resources.IconFishstrap,
                 BootstrapperIcon.IconBloxstrap => Properties.Resources.IconBloxstrap,
                 BootstrapperIcon.IconBloxstrapClassic => Properties.Resources.IconBloxstrapClassic,
                 BootstrapperIcon.IconFishstrap => Properties.Resources.IconFishstrap,
