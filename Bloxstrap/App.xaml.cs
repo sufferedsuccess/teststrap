@@ -23,7 +23,7 @@ namespace Bloxstrap
         public const string ProjectDownloadLink = "https://github.com/sufferedsuccess/teststrap/releases";
         public const string ProjectHelpLink = "https://github.com/bloxstraplabs/bloxstrap/wiki";
         public const string ProjectSupportLink = "https://github.com/sufferedsuccess/teststrap/issues/new";
-        public const string ProjectRemoteDataLink = "https://config.teststrap.app/v1/Data.json";
+        public const string ProjectRemoteDataLink = "https://config.fishstrap.app/v1/Data.json";
 
         public const string RobloxPlayerAppName = "RobloxPlayerBeta.exe";
         public const string RobloxStudioAppName = "RobloxStudioBeta.exe";
