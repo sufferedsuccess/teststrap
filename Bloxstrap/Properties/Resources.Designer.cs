@@ -99,8 +99,32 @@ namespace Bloxstrap.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-		
-		        /// <summary>
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IconBloxstrap
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("IconBloxstrap", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IconBloxstrapClassic
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("IconBloxstrapClassic", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon IconFishstrap
@@ -115,11 +139,23 @@ namespace Bloxstrap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon IconBloxstrap
+        internal static System.Drawing.Icon OldIconBloxstrap
         {
             get
             {
-                object obj = ResourceManager.GetObject("IconBloxstrap", resourceCulture);
+                object obj = ResourceManager.GetObject("OldIconBloxstrap", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon OldIconBloxstrapClassic
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("OldIconBloxstrapClassic", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -204,18 +240,6 @@ namespace Bloxstrap.Properties {
             get
             {
                 object obj = ResourceManager.GetObject("Icon2022", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon IconBloxstrapClassic
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("IconBloxstrapClassic", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

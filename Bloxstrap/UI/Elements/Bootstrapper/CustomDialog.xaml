@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-    Title="Fishstrap"
+    Title="Teststrap"
     Width="800"
     Height="450"
     MinWidth="150"
@@ -44,7 +44,7 @@
 
             <ui:TitleBar
                 x:Name="RootTitleBar"
-                Title="Fishstrap"
+                Title="Teststrap"
                 Grid.Row="0"
                 Padding="8"
                 Panel.ZIndex="1001"
