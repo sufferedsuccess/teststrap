@@ -144,8 +144,11 @@
   </data>
   <data name="Menu.GBSEditor.Graphics.Description" xml:space="preserve">
     <value />
+<<<<<<< HEAD
   </data>
   <data name="Menu_Bloxstrap_Description1" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
+=======
+>>>>>>> b83ad1863af1665454bb61408975e2f71050ab34
   </data>
 </root>
