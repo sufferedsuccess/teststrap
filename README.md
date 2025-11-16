@@ -7,9 +7,7 @@ Teststrap is a bootstrapper where it doesn't do anything. <sub>(seriously?)<sub>
 
 You can download Teststrap, but be aware of bugs!
 
-[Second build released](https://github.com/sufferedsuccess/teststrap/releases/v0.0.2.0)<br>
-[64-bit DIRECT DOWNLOAD](https://github.com/sufferedsuccess/teststrap/releases/download/v0.0.2.0/Teststrap-x64.exe)<br>
-[32-bit DIRECT DOWNLOAD](https://github.com/sufferedsuccess/teststrap/releases/download/v0.0.2.0/Teststrap-x86.exe)
+[Current release, latest release](https://github.com/sufferedsuccess/teststrap/releases/v3.0.1.2)<br>
 
 <div align="center">
 
