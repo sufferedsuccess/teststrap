@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Shell;
@@ -14,27 +14,32 @@ namespace Bloxstrap
     public partial class App : Application
     {
 #if QA_BUILD
-        public const string ProjectName = "Bloxstrap-QA";
+        public const string ProjectName = "Teststrap-QA";
 #else
-        public const string ProjectName = "Bloxstrap";
+        public const string ProjectName = "Teststrap";
 #endif
-        public const string ProjectOwner = "Bloxstrap";
-        public const string ProjectRepository = "bloxstraplabs/bloxstrap";
-        public const string ProjectDownloadLink = "https://bloxstraplabs.com";
-        public const string ProjectHelpLink = "https://bloxstraplabs.com/wiki/help/";
-        public const string ProjectSupportLink = "https://github.com/bloxstraplabs/bloxstrap/issues/new";
+        public const string ProjectOwner = "sufferedsuccess";
+        public const string ProjectRepository = "sufferedsuccess/teststrap";
+        public const string ProjectDownloadLink = "https://github.com/sufferedsuccess/teststrap/releases";
+        public const string ProjectHelpLink = "https://github.com/bloxstraplabs/bloxstrap/wiki";
+        public const string ProjectSupportLink = "https://github.com/sufferedsuccess/teststrap/issues/new";
+        public const string ProjectRemoteDataLink = "https://config.fishstrap.app/v1/Data.json";
 
-        public const string RobloxPlayerAppName = "RobloxPlayerBeta";
-        public const string RobloxStudioAppName = "RobloxStudioBeta";
+        public const string RobloxPlayerAppName = "RobloxPlayerBeta.exe";
+        public const string RobloxStudioAppName = "RobloxStudioBeta.exe";
+        // one day ill add studio support, haha i never did!
+        public const string RobloxAnselAppName = "eurotrucks2.exe";
 
         // simple shorthand for extremely frequently used and long string - this goes under HKCU
         public const string UninstallKey = $@"Software\Microsoft\Windows\CurrentVersion\Uninstall\{ProjectName}";
+
+        public const string ApisKey = $"Software\\{ProjectName}";
 
         public static LaunchSettings LaunchSettings { get; private set; } = null!;
 
         public static BuildMetadataAttribute BuildMetadata = Assembly.GetExecutingAssembly().GetCustomAttribute<BuildMetadataAttribute>()!;
 
-        public static string Version = Assembly.GetExecutingAssembly().GetName().Version!.ToString()[..^2];
+        public static string Version = Assembly.GetExecutingAssembly().GetName().Version!.ToString();
 
         public static Bootstrapper? Bootstrapper { get; set; } = null!;
 
@@ -56,7 +61,13 @@ namespace Bloxstrap
 
         public static readonly JsonManager<RobloxState> RobloxState = new();
 
+        public static readonly RemoteDataManager RemoteData = new();
+
         public static readonly FastFlagManager FastFlags = new();
+
+        public static readonly GlobalSettingsManager GlobalSettings = new();
+
+        public static readonly CookiesManager Cookies = new();
 
         public static readonly HttpClient HttpClient = new(
             new HttpClientLoggingHandler(
@@ -66,20 +77,6 @@ namespace Bloxstrap
 
         private static bool _showingExceptionDialog = false;
 
-        private static string? _webUrl = null;
-        public static string WebUrl
-        {
-            get {
-                if (_webUrl != null)
-                    return _webUrl;
-
-                string url = ConstructBloxstrapWebUrl();
-                if (Settings.Loaded) // only cache if settings are done loading
-                    _webUrl = url;
-                return url;
-            }
-        }
-        
         public static void Terminate(ErrorCode exitCode = ErrorCode.ERROR_SUCCESS)
         {
             int exitCodeNum = (int)exitCode;
@@ -140,25 +137,6 @@ namespace Bloxstrap
             Terminate(ErrorCode.ERROR_INSTALL_FAILURE);
         }
 
-        public static string ConstructBloxstrapWebUrl()
-        {
-            // dont let user switch web environment if debug mode is not on
-            if (Settings.Prop.WebEnvironment == WebEnvironment.Production || !Settings.Prop.DeveloperMode)
-                return "services.bloxstraplabs.com";
-
-            string? sub = Settings.Prop.WebEnvironment.GetDescription();
-            return $"services-{sub}.bloxstraplabs.com";
-        }
-
-        public static bool CanSendLogs()
-        {
-            // non developer mode always uses production
-            if (!Settings.Prop.DeveloperMode || Settings.Prop.WebEnvironment == WebEnvironment.Production)
-                return IsProductionBuild;
-
-            return true;
-        }
-
         public static async Task<GithubRelease?> GetLatestRelease()
         {
             const string LOG_IDENT = "App::GetLatestRelease";
@@ -183,37 +161,9 @@ namespace Bloxstrap
             return null;
         }
 
-        public static async void SendStat(string key, string value)
+        public static void SendLog()
         {
-            if (!Settings.Prop.EnableAnalytics)
-                return;
 
-            try
-            {
-                await HttpClient.GetAsync($"https://{WebUrl}/metrics/post?key={key}&value={value}");
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteException("App::SendStat", ex);
-            }
-        }
-
-        public static async void SendLog()
-        {
-            if (!Settings.Prop.EnableAnalytics || !CanSendLogs())
-                return;
-
-            try
-            {
-                await HttpClient.PostAsync(
-                    $"https://{WebUrl}/metrics/post-exception", 
-                    new StringContent(Logger.AsDocument)
-                );
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteException("App::SendLog", ex);
-            }
         }
 
         public static void AssertWindowsOSVersion()
@@ -265,7 +215,6 @@ namespace Bloxstrap
             }
 
             Logger.WriteLine(LOG_IDENT, $"OSVersion: {Environment.OSVersion}");
-
             Logger.WriteLine(LOG_IDENT, $"Loaded from {Paths.Process}");
             Logger.WriteLine(LOG_IDENT, $"Temp path is {Paths.Temp}");
             Logger.WriteLine(LOG_IDENT, $"WindowsStartMenu path is {Paths.WindowsStartMenu}");
@@ -283,7 +232,7 @@ namespace Bloxstrap
             using var uninstallKey = Registry.CurrentUser.OpenSubKey(UninstallKey);
             string? installLocation = null;
             bool fixInstallLocation = false;
-            
+
             if (uninstallKey?.GetValue("InstallLocation") is string value)
             {
                 if (Directory.Exists(value))
@@ -344,6 +293,7 @@ namespace Bloxstrap
             if (installLocation is null)
             {
                 Logger.Initialize(true);
+                AssertWindowsOSVersion();
                 Logger.WriteLine(LOG_IDENT, "Not installed, launching the installer");
                 AssertWindowsOSVersion(); // prevent new installs from unsupported operating systems
                 LaunchHandler.LaunchInstaller();
@@ -352,14 +302,9 @@ namespace Bloxstrap
             {
                 Paths.Initialize(installLocation);
 
-                Logger.WriteLine(LOG_IDENT, "Entering main logic");
-
                 // ensure executable is in the install directory
                 if (Paths.Process != Paths.Application && !File.Exists(Paths.Application))
-                {
-                    Logger.WriteLine(LOG_IDENT, "Copying to install directory");
                     File.Copy(Paths.Process, Paths.Application);
-                }
 
                 Logger.Initialize(LaunchSettings.UninstallFlag.Active);
 
@@ -373,6 +318,10 @@ namespace Bloxstrap
                 State.Load();
                 RobloxState.Load();
                 FastFlags.Load();
+                GlobalSettings.Load();
+
+                if (Settings.Prop.AllowCookieAccess)
+                    Task.Run(Cookies.LoadCookies);
 
                 if (!Locale.SupportedLocales.ContainsKey(Settings.Prop.Locale))
                 {
@@ -380,19 +329,20 @@ namespace Bloxstrap
                     Settings.Save();
                 }
 
-                Logger.WriteLine(LOG_IDENT, $"Developer mode: {Settings.Prop.DeveloperMode}");
-                Logger.WriteLine(LOG_IDENT, $"Web environment: {Settings.Prop.WebEnvironment}");
-
                 Locale.Set(Settings.Prop.Locale);
 
                 if (!LaunchSettings.BypassUpdateCheck)
                     Installer.HandleUpgrade();
 
+                Task.Run(App.RemoteData.LoadData); // ok
+
+                WindowsRegistry.RegisterApis(); // we want to register those early on
+                                                // so we wont have any issues with bloxshade
+
                 LaunchHandler.ProcessLaunchArgs();
             }
 
             // you must *explicitly* call terminate when everything is done, it won't be called implicitly
-            Logger.WriteLine(LOG_IDENT, "Startup finished");
         }
     }
 }

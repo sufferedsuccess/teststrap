@@ -1,4 +1,4 @@
-﻿// To debug the automatic updater:
+// To debug the automatic updater:
 // - Uncomment the definition below
 // - Publish the executable
 // - Launch the executable (click no when it asks you to upgrade)
@@ -11,19 +11,20 @@
 #warning "Automatic updater debugging is enabled"
 #endif
 
-using System.ComponentModel;
-using System.Data;
-using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Shell;
-
-using Microsoft.Win32;
-
 using Bloxstrap.AppData;
+using Bloxstrap.Models.APIs.Roblox;
 using Bloxstrap.RobloxInterfaces;
 using Bloxstrap.UI.Elements.Bootstrapper.Base;
-
 using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.Win32;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics.Tracing;
+using System.Threading.Channels;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Shell;
 
 namespace Bloxstrap
 {
@@ -46,6 +47,7 @@ namespace Bloxstrap
         private readonly CancellationTokenSource _cancelTokenSource = new();
 
         private IAppData AppData = default!;
+        private Dictionary<string, string> PackageDirectoryMap = null!;
         private LaunchMode _launchMode;
 
         private string _launchCommandLine = App.LaunchSettings.RobloxLaunchArgs;
@@ -104,10 +106,22 @@ namespace Bloxstrap
             Deployment.BinaryType = AppData.BinaryType;
         }
 
+        // we will use this later on since we have to wait for remote data
+        private async Task SetupPackageDictionaries()
+        {
+            await App.RemoteData.WaitUntilDataFetched(); // does this even work?
+
+            var localData = App.RemoteData.Prop.PackageMaps[IsStudioLaunch ? "studio" : "player"];
+            var commonData = App.RemoteData.Prop.PackageMaps.CommonPackageMap;
+
+            PackageDirectoryMap = new(commonData);
+
+            foreach (var package in localData)
+                PackageDirectoryMap[package.Key] = package.Value;
+        }
+
         private void SetStatus(string message)
         {
-            App.Logger.WriteLine("Bootstrapper::SetStatus", message);
-
             message = message.Replace("{product}", AppData.ProductName);
 
             if (Dialog is not null)
@@ -159,15 +173,15 @@ namespace Bloxstrap
                 message += $"\n\n{Strings.Dialog_Connectivity_RobloxUpgradeSkip}";
 
             Frontend.ShowConnectivityDialog(
-                String.Format(Strings.Dialog_Connectivity_UnableToConnect, "Roblox"), 
-                message, 
+                String.Format(Strings.Dialog_Connectivity_UnableToConnect, "Roblox"),
+                message,
                 _mustUpgrade ? MessageBoxImage.Error : MessageBoxImage.Warning,
                 exception);
 
             if (_mustUpgrade)
                 App.Terminate(ErrorCode.ERROR_CANCELLED);
         }
-        
+
         public async Task Run()
         {
             const string LOG_IDENT = "Bootstrapper::Run";
@@ -186,7 +200,7 @@ namespace Bloxstrap
 
             if (connectionResult is not null)
                 HandleConnectionError(connectionResult);
-            
+
 #if (!DEBUG || DEBUG_UPDATER) && !QA_BUILD
             if (App.Settings.Prop.CheckForUpdates && !App.LaunchSettings.UpgradeFlag.Active)
             {
@@ -196,8 +210,6 @@ namespace Bloxstrap
                     return;
             }
 #endif
-
-            App.AssertWindowsOSVersion();
 
             // ensure only one instance of the bootstrapper is running at the time
             // so that we don't have stuff like two updates happening simultaneously
@@ -250,6 +262,23 @@ namespace Bloxstrap
 
             if (!_noConnection)
             {
+                if (App.RemoteData.LoadedState == GenericTriState.Unknown) // we dont want it to flicker
+                    SetStatus(Strings.Bootstrapper_Status_WaitingForData);
+
+                await SetupPackageDictionaries(); // mods also require it
+
+                // we are checking if eurotrucks2 exists in client directory
+                if (
+                    File.Exists(Path.Combine(AppData.Directory, App.RobloxAnselAppName))
+                    )
+                {
+                    Frontend.ShowMessageBox(
+                        Strings.Bootstrapper_Dialog_AnselDisabled,
+                        MessageBoxImage.Warning
+                    );
+                    await UpgradeRoblox();
+                }
+
                 if (AppData.State.VersionGuid != _latestVersionGuid || _mustUpgrade)
                 {
                     bool backgroundUpdaterMutexOpen = Utilities.DoesMutexExist("Bloxstrap-BackgroundUpdater");
@@ -288,6 +317,8 @@ namespace Bloxstrap
                 WindowsRegistry.RegisterStudio();
             else
                 WindowsRegistry.RegisterPlayer();
+
+            WindowsRegistry.RegisterClientLocation(IsStudioLaunch, _latestVersionDirectory); // if it for some reason doesnt exist
 
             if (_launchMode != LaunchMode.Player)
                 await mutex.ReleaseAsync();
@@ -331,27 +362,89 @@ namespace Bloxstrap
                 RegexOptions.IgnoreCase | RegexOptions.CultureInvariant
             );
 
-            if (App.LaunchSettings.ChannelFlag.Active && !string.IsNullOrEmpty(App.LaunchSettings.ChannelFlag.Data))
+            bool ChannelFlag = App.LaunchSettings.ChannelFlag.Active && !string.IsNullOrEmpty(App.LaunchSettings.ChannelFlag.Data);
+
+            // CHANNEL CHANGE MODE
+
+            void EnrollChannel(string Channel = "production") => Deployment.Channel = Channel;
+            void RevertChannel() => Deployment.Channel = Deployment.DefaultChannel;
+
+            string EnrolledChannel = match.Groups.Count == 2 ? match.Groups[1].Value.ToLowerInvariant() : Deployment.DefaultChannel;
+            bool behindProductionCheck = App.Settings.Prop.ChannelChangeMode == ChannelChangeMode.Prompt;
+
+            // Private channels
+            if (App.Cookies.Loaded)
             {
-                App.Logger.WriteLine(LOG_IDENT, $"Channel set to {App.LaunchSettings.ChannelFlag.Data} from arguments");
-                Deployment.Channel = App.LaunchSettings.ChannelFlag.Data.ToLowerInvariant();
-            }
-            else if (match.Groups.Count == 2)
-            {
-                Deployment.Channel = match.Groups[1].Value.ToLowerInvariant();
-            }
-            else if (key.GetValue("www.roblox.com") is string value && !String.IsNullOrEmpty(value))
-            {
-                Deployment.Channel = value.ToLowerInvariant();
+                UserChannel? userChannel = await App.Cookies.GetUserChannel(Deployment.BinaryType);
+            
+                if (
+                    userChannel?.Token is not null &&
+                    userChannel.AssignmentType != 1 // might need a change in the future
+                    )
+                {
+                    // prevent roblox from thinking its a different channel
+                    // we have to do it to prevent issues with channel fflags
+                    if (!string.IsNullOrEmpty(EnrolledChannel))
+                        _launchCommandLine = _launchCommandLine.Replace(
+                            $"channel:{EnrolledChannel}",
+                            $"channel:{userChannel.Channel}",
+                            StringComparison.OrdinalIgnoreCase);
+
+                    Deployment.ChannelToken = userChannel.Token;
+                    EnrolledChannel = userChannel.Channel;
+                }
             }
 
-            if (String.IsNullOrEmpty(Deployment.Channel))
-                Deployment.Channel = Deployment.DefaultChannel;
+            if (!ChannelFlag)
+            {
+                switch (App.Settings.Prop.ChannelChangeMode)
+                {
+                    case ChannelChangeMode.Automatic:
+                        App.Logger.WriteLine(LOG_IDENT, "Enrolling into channel");
 
-            App.Logger.WriteLine(LOG_IDENT, $"Got channel as {Deployment.DefaultChannel}");
+                        EnrollChannel(EnrolledChannel);
+                        break;
+                    case ChannelChangeMode.Prompt:
+                        App.Logger.WriteLine(LOG_IDENT, "Prompting channel enrollment");
 
-            if (!Deployment.IsDefaultChannel)
-                App.SendStat("robloxChannel", Deployment.Channel);
+                        if
+                        (
+                        !match.Success ||
+                        match.Groups.Count != 2 ||
+                        match.Groups[1].Value.ToLowerInvariant() == Deployment.Channel
+                        )
+                        {
+                            App.Logger.WriteLine(LOG_IDENT, "Channel is either equal or incorrectly formatted");
+                            break;
+                        }
+
+                        string DisplayChannel = !String.IsNullOrEmpty(match.Groups[1].Value) ? match.Groups[1].Value : Deployment.DefaultChannel;
+
+                        var Result = Frontend.ShowMessageBox(
+                        String.Format(Strings.Bootstrapper_Bootstrapper_Dialog_PromptChannelChange,
+                        DisplayChannel, App.Settings.Prop.Channel),
+                        MessageBoxImage.Question,
+                        MessageBoxButton.YesNo
+                        );
+
+                        if (Result == MessageBoxResult.Yes)
+                            EnrollChannel(EnrolledChannel);
+                        break;
+                    case ChannelChangeMode.Ignore:
+                        App.Logger.WriteLine(LOG_IDENT, "Ignoring channel enrollment");
+                        break;
+                }
+            }
+            else
+            {
+                string ChannelFlagData = App.LaunchSettings.ChannelFlag.Data!;
+
+                if (!String.IsNullOrEmpty(ChannelFlagData))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, $"Forcing channel {ChannelFlagData}");
+                    EnrollChannel(ChannelFlagData);
+                }
+            }
 
             if (!App.LaunchSettings.VersionFlag.Active || string.IsNullOrEmpty(App.LaunchSettings.VersionFlag.Data))
             {
@@ -359,14 +452,60 @@ namespace Bloxstrap
 
                 try
                 {
-                    clientVersion = await Deployment.GetInfo();
+                    clientVersion = await Deployment.GetInfo(Deployment.Channel, behindProductionCheck);
                 }
                 catch (InvalidChannelException ex)
                 {
-                    App.Logger.WriteLine(LOG_IDENT, $"Resetting channel from {Deployment.Channel} because {ex.StatusCode}");
+                    // copied from v2.5.4
+                    // we are keeping similar logic just updated for newer apis
 
-                    Deployment.Channel = Deployment.DefaultChannel;
-                    clientVersion = await Deployment.GetInfo();
+                    // If channel does not exist
+                    if (ex.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, $"Reverting enrolled channel to {Deployment.DefaultChannel} because a WindowsPlayer build does not exist for {App.Settings.Prop.Channel}");
+                    }
+                    // If channel is not available to the user (private/internal release channel)
+                    else if (ex.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, $"Reverting enrolled channel to {Deployment.DefaultChannel} because {App.Settings.Prop.Channel} is restricted for public use.");
+
+                        // Only prompt if user has channel switching mode set to something other than Automatic.
+                        if (App.Settings.Prop.ChannelChangeMode != ChannelChangeMode.Automatic)
+                        {
+                            Frontend.ShowMessageBox(
+                                String.Format(
+                                    Strings.Boostrapper_Dialog_UnauthorizedChannel,
+                                    Deployment.Channel,
+                                    Deployment.DefaultChannel
+                                ),
+                                MessageBoxImage.Information
+                            );
+                        }
+                    }
+                    else
+                    {
+                        throw;
+                    }
+
+                    RevertChannel();
+                    clientVersion = await Deployment.GetInfo(Deployment.DefaultChannel, behindProductionCheck);
+                }
+
+                if (clientVersion.IsBehindDefaultChannel && App.Settings.Prop.ChannelChangeMode == ChannelChangeMode.Prompt)
+                {
+                    MessageBoxResult action = Frontend.ShowMessageBox(
+                            String.Format(Strings.Bootstrapper_Dialog_ChannelOutOfDate, Deployment.Channel, Deployment.DefaultChannel),
+                            MessageBoxImage.Warning,
+                            MessageBoxButton.YesNo
+                        );
+
+                    if (action == MessageBoxResult.Yes)
+                    {
+                        App.Logger.WriteLine("Bootstrapper::CheckLatestVersion", $"Changed Roblox channel from {App.Settings.Prop.Channel} to {Deployment.DefaultChannel}");
+
+                        RevertChannel();
+                        clientVersion = await Deployment.GetInfo(Deployment.DefaultChannel);
+                    }
                 }
 
                 key.SetValueSafe("www.roblox.com", Deployment.IsDefaultChannel ? "" : Deployment.Channel);
@@ -474,149 +613,244 @@ namespace Bloxstrap
             }
         }
 
-        private void StartRoblox()
+        private static void LaunchMultiInstanceWatcher()
+        {
+            const string LOG_IDENT = "Bootstrapper::LaunchMultiInstanceWatcher";
+
+            if (Utilities.DoesMutexExist("ROBLOX_singletonMutex"))
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Roblox singleton mutex already exists");
+                return;
+            }
+
+            using EventWaitHandle initEventHandle = new EventWaitHandle(false, EventResetMode.AutoReset, "Bloxstrap-MultiInstanceWatcherInitialisationFinished");
+            Process.Start(Paths.Process, "-multiinstancewatcher");
+
+            bool initSuccess = initEventHandle.WaitOne(TimeSpan.FromSeconds(2));
+            if (initSuccess)
+                App.Logger.WriteLine(LOG_IDENT, "Initialisation finished signalled, continuing.");
+            else
+                App.Logger.WriteLine(LOG_IDENT, "Did not receive the initialisation finished signal, continuing.");
+        }
+
+        private async void StartRoblox()
         {
             const string LOG_IDENT = "Bootstrapper::StartRoblox";
 
             SetStatus(Strings.Bootstrapper_Status_Starting);
 
-            var startInfo = new ProcessStartInfo()
+            if (_launchMode == LaunchMode.Player)
             {
-                FileName = AppData.ExecutablePath,
-                Arguments = _launchCommandLine,
-                WorkingDirectory = AppData.Directory
-            };
+                // this needs to be done before roblox launches
+                if (App.Settings.Prop.MultiInstanceLaunching)
+                    LaunchMultiInstanceWatcher();
 
-            if (_launchMode == LaunchMode.Player && ShouldRunAsAdmin())
-            {
-                startInfo.Verb = "runas";
-                startInfo.UseShellExecute = true;
-            }
-            else if (_launchMode == LaunchMode.StudioAuth)
-            {
-                Process.Start(startInfo);
-                return;
-            }
-
-            string? logFileName = null;
-
-            string rbxDir = Path.Combine(Paths.LocalAppData, "Roblox");
-            if (!Directory.Exists(rbxDir))
-                Directory.CreateDirectory(rbxDir);
-
-            string rbxLogDir = Path.Combine(rbxDir, "logs");
-            if (!Directory.Exists(rbxLogDir))
-                Directory.CreateDirectory(rbxLogDir);
-
-            var logWatcher = new FileSystemWatcher()
-            {
-                Path = rbxLogDir,
-                Filter = "*.log",
-                EnableRaisingEvents = true
-            };
-
-            var logCreatedEvent = new AutoResetEvent(false);
-
-            logWatcher.Created += (_, e) =>
-            {
-                logWatcher.EnableRaisingEvents = false;
-                logFileName = e.FullPath;
-                logCreatedEvent.Set();
-            };
-
-            // v2.2.0 - byfron will trip if we keep a process handle open for over a minute, so we're doing this now
-            try
-            {
-                using var process = Process.Start(startInfo)!;
-                _appPid = process.Id;
-            }
-            catch (Win32Exception ex) when (ex.NativeErrorCode == 1223)
-            {
-                // 1223 = ERROR_CANCELLED, gets thrown if a UAC prompt is cancelled
-                return;
-            }
-            catch (Exception)
-            {
-                // attempt a reinstall on next launch
-                File.Delete(AppData.ExecutablePath);
-                throw;
-            }
-
-            App.Logger.WriteLine(LOG_IDENT, $"Started Roblox (PID {_appPid}), waiting for log file");
-
-            logCreatedEvent.WaitOne(TimeSpan.FromSeconds(15));
-
-            if (String.IsNullOrEmpty(logFileName))
-            {
-                App.Logger.WriteLine(LOG_IDENT, "Unable to identify log file");
-                Frontend.ShowPlayerErrorDialog();
-                return;
-            }
-            else
-            {
-                App.Logger.WriteLine(LOG_IDENT, $"Got log file as {logFileName}");
-            }
-
-            _mutex?.ReleaseAsync();
-
-            if (IsStudioLaunch)
-                return;
-
-            var autoclosePids = new List<int>();
-
-            // launch custom integrations now
-            foreach (var integration in App.Settings.Prop.CustomIntegrations)
-            {
-                App.Logger.WriteLine(LOG_IDENT, $"Launching custom integration '{integration.Name}' ({integration.Location} {integration.LaunchArgs} - autoclose is {integration.AutoClose})");
-
-                int pid = 0;
-
-                try
+                if (App.Settings.Prop.ForceRobloxLanguage)
                 {
-                    var process = Process.Start(new ProcessStartInfo
+                    var match = Regex.Match(_launchCommandLine, "gameLocale:([a-z_]+)", RegexOptions.CultureInvariant);
+
+                    if (match.Groups.Count == 2)
+                        _launchCommandLine = _launchCommandLine.Replace(
+                            "robloxLocale:en_us",
+                            $"robloxLocale:{match.Groups[1].Value}",
+                            StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            string[] Names = { App.RobloxPlayerAppName, App.RobloxAnselAppName, App.RobloxStudioAppName };
+            string ResolvedName = null!;
+
+                foreach (string Name in Names)
+                {
+                    string Directory = Path.Combine((string)AppData.Directory, Name);
+                    if (File.Exists(Directory))
                     {
-                        FileName = integration.Location,
-                        Arguments = integration.LaunchArgs.Replace("\r\n", " "),
-                        WorkingDirectory = Path.GetDirectoryName(integration.Location),
-                        UseShellExecute = true
-                    })!;
-
-                    pid = process.Id;
+                        ResolvedName = Name;
+                    }
                 }
-                catch (Exception ex)
+
+                if (String.IsNullOrEmpty(ResolvedName))
                 {
-                    App.Logger.WriteLine(LOG_IDENT, $"Failed to launch integration '{integration.Name}'!");
-                    App.Logger.WriteLine(LOG_IDENT, ex.Message);
+                    await UpgradeRoblox();
                 }
 
-                if (integration.AutoClose && pid != 0)
-                    autoclosePids.Add(pid);
-            }
-
-            if (App.Settings.Prop.EnableActivityTracking || App.LaunchSettings.TestModeFlag.Active || autoclosePids.Any())
-            {
-                using var ipl = new InterProcessLock("Watcher", TimeSpan.FromSeconds(5));
-
-                var watcherData = new WatcherData 
-                { 
-                    ProcessId = _appPid, 
-                    LogFile = logFileName, 
-                    AutoclosePids = autoclosePids
+                var startInfo = new ProcessStartInfo()
+                {
+                    FileName = Path.Combine(AppData.Directory, ResolvedName),
+                    Arguments = _launchCommandLine,
+                    WorkingDirectory = AppData.Directory
                 };
 
-                string watcherDataArg = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(watcherData)));
+                if (_launchMode == LaunchMode.Player && ShouldRunAsAdmin())
+                {
+                    startInfo.Verb = "runas";
+                    startInfo.UseShellExecute = true;
+                }
+                else if (_launchMode == LaunchMode.StudioAuth)
+                {
+                    Process.Start(startInfo);
+                    return;
+                }
 
-                string args = $"-watcher \"{watcherDataArg}\"";
+                string? logFileName = null;
 
-                if (App.LaunchSettings.TestModeFlag.Active)
-                    args += " -testmode";
+                string rbxDir = Path.Combine(Paths.LocalAppData, "Roblox");
+                if (!Directory.Exists(rbxDir))
+                    Directory.CreateDirectory(rbxDir);
 
-                if (ipl.IsAcquired)
-                    Process.Start(Paths.Process, args);
-            }
+                string rbxLogDir = Path.Combine(rbxDir, "logs");
+                if (!Directory.Exists(rbxLogDir))
+                    Directory.CreateDirectory(rbxLogDir);
 
-            // allow for window to show, since the log is created pretty far beforehand
-            Thread.Sleep(1000);
+                var logWatcher = new FileSystemWatcher()
+                {
+                    Path = rbxLogDir,
+                    Filter = "*.log",
+                    EnableRaisingEvents = true
+                };
+
+                var logCreatedEvent = new AutoResetEvent(false);
+
+                logWatcher.Created += (_, e) =>
+                {
+                    logWatcher.EnableRaisingEvents = false;
+                    logFileName = e.FullPath;
+                    logCreatedEvent.Set();
+                };
+
+                var autoclosePids = new List<int>();
+
+                // the code you're gonna read ahead is horrible. sorry for the hack, but it works ¯\_(ツ)_/¯
+                // check if prelaunch is checked
+                foreach (var integration in App.Settings.Prop.CustomIntegrations)
+                {
+                    if (integration?.PreLaunch == true)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, $"Pre-Launching custom integration '{integration.Name}' ({integration.Location} {integration.LaunchArgs} - autoclose is {integration.AutoClose})");
+                        int pid = 0;
+                        try
+                        {
+                            var process = Process.Start(new ProcessStartInfo
+                            {
+                                FileName = integration.Location,
+                                Arguments = integration.LaunchArgs.Replace("\r\n", " "),
+                                WorkingDirectory = Path.GetDirectoryName(integration.Location),
+                                UseShellExecute = true
+                            })!;
+                            pid = process.Id;
+                        }
+                        catch (Exception ex)
+                        {
+                            App.Logger.WriteLine(LOG_IDENT, $"Failed to pre-launch integration '{integration.Name}'!");
+                            App.Logger.WriteLine(LOG_IDENT, ex.Message);
+                        }
+
+                        if (integration?.AutoClose == true && pid != 0)
+                            autoclosePids.Add(pid);
+
+                        if (integration?.Delay != null)
+                            Thread.Sleep(integration.Delay);
+                    }
+                }
+
+                // v2.2.0 - byfron will trip if we keep a process handle open for over a minute, so we're doing this now
+                try
+                {
+                    using var process = Process.Start(startInfo)!;
+                    _appPid = process.Id;
+                }
+                catch (Win32Exception ex) when (ex.NativeErrorCode == 1223)
+                {
+                    // 1223 = ERROR_CANCELLED, gets thrown if a UAC prompt is cancelled
+                    return;
+                }
+                catch (Exception)
+                {
+                    // attempt a reinstall on next launch
+                    File.Delete(AppData.ExecutablePath);
+                    throw;
+                }
+
+                App.Logger.WriteLine(LOG_IDENT, $"Started Roblox (PID {_appPid}), waiting for log file");
+
+                logCreatedEvent.WaitOne(TimeSpan.FromSeconds(15));
+
+                if (String.IsNullOrEmpty(logFileName))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Unable to identify log file");
+                    // Frontend.ShowPlayerErrorDialog();
+                    return;
+                }
+                else
+                {
+                    App.Logger.WriteLine(LOG_IDENT, $"Got log file as {logFileName}");
+                }
+
+                _mutex?.ReleaseAsync();
+
+                if (IsStudioLaunch)
+                    return;
+
+                // lord.... forgive me for this hack.....
+                // launch custom integrations now
+                foreach (var integration in App.Settings.Prop.CustomIntegrations)
+                {
+                    if (integration == null)
+                        continue;
+
+                    if (integration?.PreLaunch == true)
+                        continue; // skip pre-launch integrations
+
+                    App.Logger.WriteLine(LOG_IDENT, $"Launching custom integration '{integration!.Name}' ({integration.Location} {integration?.LaunchArgs} - autoclose is {integration!.AutoClose})");
+
+                    int pid = 0;
+
+                    try
+                    {
+                        var process = Process.Start(new ProcessStartInfo
+                        {
+                            FileName = integration.Location,
+                            Arguments = integration.LaunchArgs.Replace("\r\n", " "),
+                            WorkingDirectory = Path.GetDirectoryName(integration.Location),
+                            UseShellExecute = true
+                        })!;
+
+                        pid = process.Id;
+                    }
+                    catch (Exception ex)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, $"Failed to launch integration '{integration.Name}'!");
+                        App.Logger.WriteLine(LOG_IDENT, ex.Message);
+                    }
+
+                    if (integration.AutoClose && pid != 0)
+                        autoclosePids.Add(pid);
+                }
+
+                if (App.Settings.Prop.EnableActivityTracking || App.LaunchSettings.TestModeFlag.Active || autoclosePids.Any())
+                {
+                    using var ipl = new InterProcessLock("Watcher", TimeSpan.FromSeconds(5));
+
+                    var watcherData = new WatcherData
+                    {
+                        ProcessId = _appPid,
+                        LogFile = logFileName,
+                        AutoclosePids = autoclosePids
+                    };
+
+                    string watcherDataArg = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(watcherData)));
+
+                    string args = $"-watcher \"{watcherDataArg}\"";
+
+                    if (App.LaunchSettings.TestModeFlag.Active)
+                        args += " -testmode";
+
+                    if (ipl.IsAcquired || true)
+                        Process.Start(Paths.Process, args);
+                }
+
+                // allow for window to show, since the log is created pretty far beforehand
+                Thread.Sleep(1000);
         }
 
         private bool ShouldRunAsAdmin()
@@ -655,6 +889,9 @@ namespace Bloxstrap
             {
                 try
                 {
+                    // clean up registry keys
+                    WindowsRegistry.RegisterClientLocation(IsStudioLaunch, null);
+
                     // clean up install
                     if (Directory.Exists(_latestVersionDirectory))
                         Directory.Delete(_latestVersionDirectory, true);
@@ -679,13 +916,13 @@ namespace Bloxstrap
 
             App.SoftTerminate(ErrorCode.ERROR_CANCELLED);
         }
-#endregion
+        #endregion
 
         #region App Install
         private async Task<bool> CheckForUpdates()
         {
             const string LOG_IDENT = "Bootstrapper::CheckForUpdates";
-            
+
             // don't update if there's another instance running (likely running in the background)
             // i don't like this, but there isn't much better way of doing it /shrug
             if (Process.GetProcessesByName(App.ProjectName).Length > 1)
@@ -737,7 +974,7 @@ namespace Bloxstrap
                 Directory.CreateDirectory(Paths.TempUpdates);
 
                 App.Logger.WriteLine(LOG_IDENT, $"Downloading {releaseInfo.TagName}...");
-                
+
                 if (!File.Exists(downloadLocation))
                 {
                     var response = await App.HttpClient.GetAsync(asset.BrowserDownloadUrl);
@@ -767,7 +1004,7 @@ namespace Bloxstrap
                 App.Settings.Save();
 
                 new InterProcessLock("AutoUpdater");
-                
+
                 Process.Start(startInfo);
 
                 return true;
@@ -790,6 +1027,7 @@ namespace Bloxstrap
         #endregion
 
         #region Roblox Install
+
         private static bool TryDeleteRobloxInDirectory(string dir)
         {
             string clientPath = Path.Combine(dir, "RobloxPlayerBeta.exe");
@@ -845,7 +1083,7 @@ namespace Bloxstrap
                     {
                         Directory.Delete(dir, true);
                     }
-                    catch (Exception ex)
+                    catch (IOException ex)
                     {
                         App.Logger.WriteLine(LOG_IDENT, $"Failed to delete {dir}");
                         App.Logger.WriteException(LOG_IDENT, ex);
@@ -872,13 +1110,13 @@ namespace Bloxstrap
                 appFlagsKey.DeleteValueSafe(oldClientLocation);
             }
         }
-
         private static void KillRobloxPlayers()
         {
             const string LOG_IDENT = "Bootstrapper::KillRobloxPlayers";
 
             List<Process> processes = new List<Process>();
             processes.AddRange(Process.GetProcessesByName("RobloxPlayerBeta"));
+            processes.AddRange(Process.GetProcessesByName("eurotrucks2"));
             processes.AddRange(Process.GetProcessesByName("RobloxCrashHandler")); // roblox studio doesnt depend on crash handler being open, so this should be fine
 
             foreach (Process process in processes)
@@ -895,9 +1133,28 @@ namespace Bloxstrap
             }
         }
 
+
         private async Task UpgradeRoblox()
         {
             const string LOG_IDENT = "Bootstrapper::UpgradeRoblox";
+
+            bool CancelUpgrade = !App.Settings.Prop.UpdateRoblox;
+
+            if (CancelUpgrade)
+            {
+                SetStatus(Strings.Bootstrapper_Status_CancelUpgrade);
+                App.Logger.WriteLine(LOG_IDENT, "Upgrading disabled, cancelling the upgrade.");
+                Thread.Sleep(2000);
+            }
+
+            if (CancelUpgrade && !Directory.Exists(_latestVersionDirectory))
+            {
+                Frontend.ShowMessageBox(Strings.Bootstrapper_Dialog_NoUpgradeWithoutClient, MessageBoxImage.Warning, MessageBoxButton.OK);
+            }
+            else if (CancelUpgrade)
+            {
+                return;
+            }
 
             if (String.IsNullOrEmpty(AppData.State.VersionGuid))
                 SetStatus(Strings.Bootstrapper_Status_Installing);
@@ -938,7 +1195,7 @@ namespace Bloxstrap
             // packed size only matters if we don't already have the package cached on disk
             totalSizeRequired += _versionPackageManifest.Where(x => !cachedPackageHashes.Contains(x.Signature)).Sum(x => x.PackedSize);
             totalSizeRequired += _versionPackageManifest.Sum(x => x.Size);
-            
+
             if (Filesystem.GetFreeDiskSpace(Paths.Base) < totalSizeRequired)
             {
                 Frontend.ShowMessageBox(Strings.Bootstrapper_NotEnoughSpace, MessageBoxImage.Error);
@@ -972,6 +1229,10 @@ namespace Bloxstrap
                 if (_cancelTokenSource.IsCancellationRequested)
                     return;
 
+                // check if the package should be ignored
+                if (App.RemoteData.Prop.IgnoredPackages.Contains(package.Name))
+                    continue;
+
                 // download all the packages synchronously
                 await DownloadPackage(package);
 
@@ -994,7 +1255,7 @@ namespace Bloxstrap
             }
 
             await Task.WhenAll(extractionTasks);
-            
+
             App.Logger.WriteLine(LOG_IDENT, "Writing AppSettings.xml...");
             await File.WriteAllTextAsync(Path.Combine(_latestVersionDirectory, "AppSettings.xml"), AppSettings);
 
@@ -1010,7 +1271,7 @@ namespace Bloxstrap
                 {
                     // reset prompt state if the user has it installed
                     App.State.Prop.PromptWebView2Install = true;
-                }   
+                }
                 else
                 {
                     var result = Frontend.ShowMessageBox(Strings.Bootstrapper_WebView2NotFound, MessageBoxImage.Warning, MessageBoxButton.YesNo, MessageBoxResult.Yes);
@@ -1031,7 +1292,7 @@ namespace Bloxstrap
                             return;
                         }
 
-                        string baseDirectory = Path.Combine(_latestVersionDirectory, AppData.PackageDirectoryMap[package.Name]);
+                        string baseDirectory = Path.Combine(_latestVersionDirectory, PackageDirectoryMap[package.Name]);
 
                         ExtractPackage(package);
 
@@ -1104,6 +1365,8 @@ namespace Bloxstrap
             {
                 uninstallKey.SetValueSafe("EstimatedSize", totalSize);
             }
+
+            WindowsRegistry.RegisterClientLocation(IsStudioLaunch, _latestVersionDirectory);
 
             App.Logger.WriteLine(LOG_IDENT, $"Registered as {totalSize} KB");
 
@@ -1267,8 +1530,8 @@ namespace Bloxstrap
             {
                 if (modFolderFiles.Contains(fileLocation))
                     continue;
-
-                var packageMapEntry = AppData.PackageDirectoryMap.SingleOrDefault(x => !String.IsNullOrEmpty(x.Value) && fileLocation.StartsWith(x.Value));
+                
+                var packageMapEntry = PackageDirectoryMap.SingleOrDefault(x => !String.IsNullOrEmpty(x.Value) && fileLocation.StartsWith(x.Value));
                 string packageName = packageMapEntry.Key;
 
                 // package doesn't exist, likely mistakenly placed file
@@ -1331,7 +1594,7 @@ namespace Bloxstrap
         private async Task DownloadPackage(Package package)
         {
             string LOG_IDENT = $"Bootstrapper::DownloadPackage.{package.Name}";
-            
+
             if (_cancelTokenSource.IsCancellationRequested)
                 return;
 
@@ -1416,6 +1679,12 @@ namespace Bloxstrap
                         await fileStream.WriteAsync(buffer.AsMemory(0, bytesRead), _cancelTokenSource.Token);
 
                         _totalDownloadedBytes += bytesRead;
+                        SetStatus(
+                            String.Format(App.Settings.Prop.DownloadingStringFormat,
+                            package.Name,
+                            totalBytesRead / 1048576,
+                            package.Size / 1048576
+                            ));
                         UpdateProgressBar();
                     }
 
@@ -1434,11 +1703,9 @@ namespace Bloxstrap
 
                     if (ex.GetType() == typeof(ChecksumFailedException))
                     {
-                        App.SendStat("packageDownloadState", "httpFail");
-
                         Frontend.ShowConnectivityDialog(
                             Strings.Dialog_Connectivity_UnableToDownload,
-                            String.Format(Strings.Dialog_Connectivity_UnableToDownloadReason, "[https://bloxstraplabs.com/wiki/help/bloxstrap-cannot-download-roblox/](https://bloxstraplabs.com/wiki/help/bloxstrap-cannot-download-roblox/)"),
+                            String.Format(Strings.Dialog_Connectivity_UnableToDownloadReason, "[https://github.com/bloxstraplabs/bloxstrap/wiki/Bloxstrap-is-unable-to-download-Roblox](https://github.com/bloxstraplabs/bloxstrap/wiki/Bloxstrap-is-unable-to-download-Roblox)"),
                             MessageBoxImage.Error,
                             ex
                         );
@@ -1470,7 +1737,7 @@ namespace Bloxstrap
         {
             const string LOG_IDENT = "Bootstrapper::ExtractPackage";
 
-            string? packageDir = AppData.PackageDirectoryMap.GetValueOrDefault(package.Name);
+            string? packageDir = PackageDirectoryMap.GetValueOrDefault(package.Name);
 
             if (packageDir is null)
             {

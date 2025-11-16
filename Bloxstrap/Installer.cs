@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
+using System.Xml.Linq;
+using Bloxstrap.AppData;
 using Microsoft.Win32;
 
 namespace Bloxstrap
@@ -9,12 +12,14 @@ namespace Bloxstrap
         /// Should this version automatically open the release notes page?
         /// Recommended for major updates only.
         /// </summary>
-        private const bool OpenReleaseNotes = true;
+        private const bool OpenReleaseNotes = false;
 
         private static string DesktopShortcut => Path.Combine(Paths.Desktop, $"{App.ProjectName}.lnk");
 
         private static string StartMenuShortcut => Path.Combine(Paths.WindowsStartMenu, $"{App.ProjectName}.lnk");
 
+        public string BloxstrapInstallDirectory = Path.Combine(Paths.LocalAppData, "Bloxstrap"); // default directory for bloxstrap
+                                                                                                 // TODO dynamically fetch from uninstall/player registry keys
         public string InstallLocation = Path.Combine(Paths.LocalAppData, App.ProjectName);
 
         public bool ExistingDataPresent => File.Exists(Path.Combine(InstallLocation, "Settings.json"));
@@ -23,11 +28,20 @@ namespace Bloxstrap
 
         public bool CreateStartMenuShortcuts = true;
 
-        public bool EnableAnalytics = true;
+        public bool ImportSettings = Directory.Exists(Path.Combine(Paths.LocalAppData, "Bloxstrap")); // if bloxstrap isnt detected this will be set to false
+                                                                                                      // another scenerio is user simply toggling it off
 
         public bool IsImplicitInstall = false;
 
         public string InstallLocationError { get; set; } = "";
+
+        // anything we want copied should be put in here
+        // root directory only
+        public string[] FilesForImporting = {
+            "CustomThemes", // from feature/custom-bootstrappers
+            "Modifications",
+            "Settings.json"
+        };
 
         public void DoInstall()
         {
@@ -79,6 +93,8 @@ namespace Bloxstrap
                 uninstallKey.SetValueSafe("URLUpdateInfo", App.ProjectDownloadLink);
             }
 
+            WindowsRegistry.RegisterApis();
+
             // only register player, for the scenario where the user installs bloxstrap, closes it,
             // and then launches from the website expecting it to work
             // studio can be implicitly registered when it's first launched manually
@@ -90,12 +106,28 @@ namespace Bloxstrap
             if (CreateStartMenuShortcuts)
                 Shortcut.Create(Paths.Application, "", StartMenuShortcut);
 
+            if (ImportSettings)
+            {
+                // we dont have to worry about directories messing up
+                // if something doesnt exist teststrap will recreate the file/directory
+                try
+                {
+                    ImportSettingsFromBloxstrap();
+                } catch (Exception ex)
+                {
+                    Frontend.ShowMessageBox(
+                        String.Format(Strings.Installer_FailedToImportSettings, ex.Message),
+                        MessageBoxImage.Error,
+                        MessageBoxButton.OK
+                    );
+                }
+            }
+
             // existing configuration persisting from an earlier install
+            // or from importing settings
             App.Settings.Load(false);
             App.State.Load(false);
             App.FastFlags.Load(false);
-
-            App.Settings.Prop.EnableAnalytics = EnableAnalytics;
 
             if (App.IsStudioVisible)
                 WindowsRegistry.RegisterStudio();
@@ -104,8 +136,6 @@ namespace Bloxstrap
 
             App.Logger.WriteLine(LOG_IDENT, "Installation finished");
 
-            if (!IsImplicitInstall)
-                App.SendStat("installAction", "install");
         }
 
         private bool ValidateLocation()
@@ -132,6 +162,10 @@ namespace Bloxstrap
 
             // prevent from installing into the program files folder
             if (InstallLocation.Contains("Program Files"))
+                return false;
+
+            // prevent issues with settings importing
+            if (InstallLocation.Contains("Local\\Bloxstrap"))
                 return false;
 
             return true;
@@ -250,7 +284,8 @@ namespace Bloxstrap
             }
             else
             {
-                string playerPath = Path.Combine((string)playerFolder, "RobloxPlayerBeta.exe");
+                bool AnselApp = File.Exists(Path.Combine((string)playerFolder, App.RobloxAnselAppName));
+                string playerPath = Path.Combine((string)playerFolder, AnselApp ? App.RobloxAnselAppName : "RobloxPlayerBeta.exe");
 
                 WindowsRegistry.RegisterPlayer(playerPath, "%1");
             }
@@ -278,6 +313,8 @@ namespace Bloxstrap
                 WindowsRegistry.RegisterStudioFileClass(studioPath, "-ide \"%1\"");
             }
 
+            Registry.CurrentUser.DeleteSubKey(App.ApisKey);
+
             var cleanupSequence = new List<Action>
             {
                 () =>
@@ -294,10 +331,18 @@ namespace Bloxstrap
                 () => File.Delete(StartMenuShortcut),
 
                 () => Directory.Delete(Paths.Versions, true),
+
                 () => Directory.Delete(Paths.Downloads, true),
 
-                () => File.Delete(App.State.FileLocation)
+                () => File.Delete(App.State.FileLocation),
+
+                () =>
+                {
+                if (Paths.Roblox == Path.Combine(Paths.Base, "Roblox")) // checking if roblox is installed in base directory
+                    Directory.Delete(Paths.Roblox, true);               // made that to prevent accidental removals of different builds
+                }
             };
+
 
             if (!keepData)
             {
@@ -352,8 +397,6 @@ namespace Bloxstrap
                     WindowStyle = ProcessWindowStyle.Hidden
                 });
             }
-
-            App.SendStat("installAction", "uninstall");
         }
 
         public static void HandleUpgrade()
@@ -480,6 +523,13 @@ namespace Bloxstrap
                         File.Delete(configLocation);
                 }
 
+
+                if (Utilities.CompareVersions(existingVer, "2.5.0") == VersionComparison.LessThan)
+                {
+                    App.FastFlags.SetValue("DFFlagDisableDPIScale", null);
+                    App.FastFlags.SetValue("DFFlagVariableDPIScale2", null);
+                }
+
                 if (Utilities.CompareVersions(existingVer, "2.6.0") == VersionComparison.LessThan)
                 {
                     if (App.Settings.Prop.UseDisableAppPatch)
@@ -498,6 +548,10 @@ namespace Bloxstrap
 
                     if (App.Settings.Prop.BootstrapperStyle == BootstrapperStyle.ClassicFluentDialog)
                         App.Settings.Prop.BootstrapperStyle = BootstrapperStyle.FluentDialog;
+
+                    _ = int.TryParse(App.FastFlags.GetPreset("Rendering.Framerate"), out int x);
+                    if (x == 0)
+                        App.FastFlags.SetPreset("Rendering.Framerate", null);
                 }
 
                 if (Utilities.CompareVersions(existingVer, "2.8.0") == VersionComparison.LessThan)
@@ -539,6 +593,23 @@ namespace Bloxstrap
                     Registry.CurrentUser.DeleteSubKeyTree("Software\\Bloxstrap", false);
 
                     WindowsRegistry.RegisterPlayer();
+
+                    App.FastFlags.SetValue("FFlagDisableNewIGMinDUA", null);
+                    App.FastFlags.SetValue("FFlagFixGraphicsQuality", null);
+                }
+
+                if (Utilities.CompareVersions(existingVer, "2.8.1") == VersionComparison.LessThan)
+                {
+                    // wipe all escape menu flag presets
+                    App.FastFlags.SetValue("FIntNewInGameMenuPercentRollout3", null);
+                    App.FastFlags.SetValue("FFlagEnableInGameMenuControls", null);
+                    App.FastFlags.SetValue("FFlagEnableInGameMenuModernization", null);
+                    App.FastFlags.SetValue("FFlagEnableInGameMenuChrome", null);
+                    App.FastFlags.SetValue("FFlagFixReportButtonCutOff", null);
+                    App.FastFlags.SetValue("FFlagEnableMenuControlsABTest", null);
+                    App.FastFlags.SetValue("FFlagEnableV3MenuABTest3", null);
+                    App.FastFlags.SetValue("FFlagEnableInGameMenuChromeABTest3", null);
+                    App.FastFlags.SetValue("FFlagEnableInGameMenuChromeABTest4", null);
                 }
 
                 if (Utilities.CompareVersions(existingVer, "2.8.2") == VersionComparison.LessThan)
@@ -581,8 +652,6 @@ namespace Bloxstrap
             if (currentVer is null)
                 return;
 
-            App.SendStat("installAction", "upgrade");
-
             if (isAutoUpgrade)
             {
 #pragma warning disable CS0162 // Unreachable code detected
@@ -598,6 +667,73 @@ namespace Bloxstrap
                     MessageBoxButton.OK
                 );
             }
+        }
+
+        public void ImportSettingsFromBloxstrap()
+        {
+            const string LOG_IDENT = "Installer::ImportSettings";
+
+            if (!Directory.Exists(BloxstrapInstallDirectory))
+            {
+                Frontend.ShowMessageBox(Strings.Installer_InstallationNotFound, MessageBoxImage.Exclamation);
+                return;
+            } // bloxstrap default directory is not present
+
+            foreach (string FileName in FilesForImporting)
+            {
+                string Source = Path.Combine(BloxstrapInstallDirectory, FileName);
+                if (!Directory.Exists(Source) && !File.Exists(Source))
+                    continue; // customthemes
+
+                FileAttributes Attributes = File.GetAttributes(Source);
+                bool IsDirectory = Attributes.HasFlag(FileAttributes.Directory);
+
+                App.Logger.WriteLine(LOG_IDENT, $"Found file {Source}, IsDirectory: {IsDirectory}");
+
+                if (IsDirectory)
+                {
+                    // delete existing file from teststrap folder
+                    string ExistingFile = Path.Combine(InstallLocation, FileName);
+                    if (Directory.Exists(ExistingFile))
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, $"Deleting existing {FileName}...");
+                        Directory.Delete(ExistingFile, true);
+                    }
+
+                    // https://stackoverflow.com/questions/58744/copy-the-entire-contents-of-a-directory-in-c-sharp
+                    // we could use Directory.Move but that deletes the directory from bloxstrap folder
+                    // instead we will use this
+
+                    // create the directory
+                    Directory.CreateDirectory(ExistingFile);
+
+                    // Now Create all of the directories
+                    foreach (string dirPath in Directory.GetDirectories(Source, "*", SearchOption.AllDirectories))
+                    {
+                        Directory.CreateDirectory(dirPath.Replace(Source, ExistingFile));
+                    }
+
+                    // Copy all the files & Replaces any files with the same name
+                    foreach (string newPath in Directory.GetFiles(Source, "*.*", SearchOption.AllDirectories))
+                    {
+                        File.Copy(newPath, newPath.Replace(Source, ExistingFile), true);
+                    }
+                } else
+                {
+                    string FileLocation = Path.Combine(InstallLocation, FileName);
+                    // we dont have to delete the file here
+                    // we can simply override it
+                    File.Copy(Source, FileLocation, true);
+                    App.Logger.WriteLine(LOG_IDENT, $"Overridding {FileName} in InstallLocation");
+                }
+            }
+
+            App.Logger.WriteLine(LOG_IDENT, $"Importing succeded");
+
+            // these happen later on in installation process
+            // App.Settings.Load(false);
+            // App.State.Load(false);
+            // App.FastFlags.Load(false);
         }
     }
 }

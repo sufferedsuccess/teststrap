@@ -1,35 +1,43 @@
 {
   "profiles": {
-    "Bloxstrap (Launch)": {
+    "Teststrap (Launch)": {
       "commandName": "Project"
     },
-    "Bloxstrap (Quiet Launch)": {
+    "Teststrap (Quiet Launch)": {
       "commandName": "Project",
       "commandLineArgs": "-quiet"
     },
-    "Bloxstrap (Uninstall)": {
+    "Teststrap (Uninstall)": {
       "commandName": "Project",
       "commandLineArgs": "-uninstall"
     },
-    "Bloxstrap (Quiet Uninstall)": {
+    "Teststrap (Quiet Uninstall)": {
       "commandName": "Project",
       "commandLineArgs": "-uninstall -quiet"
     },
-    "Bloxstrap (Menu)": {
+    "Teststrap (Menu)": {
       "commandName": "Project",
       "commandLineArgs": "-menu"
     },
-    "Bloxstrap (Deeplink)": {
+    "Teststrap (Deeplink)": {
       "commandName": "Project",
       "commandLineArgs": "-player \"roblox://experiences/start?placeId=13700835620\""
     },
-    "Bloxstrap (Studio Launch)": {
+    "Teststrap (Channel Launch)": {
+      "commandName": "Project",
+      "commandLineArgs": "-player \"roblox-player:1+launchmode:play+channel:zcontrol+LaunchExp:InApp\""
+    },
+    "Teststrap (Studio Launch)": {
       "commandName": "Project",
       "commandLineArgs": "-studio"
     },
-    "Bloxstrap (Watcher)": {
+    "Teststrap (Watcher)": {
       "commandName": "Project",
       "commandLineArgs": "-watcher"
+    },
+    "Teststrap (Bloxshade)": {
+      "commandName": "Project",
+      "commandLineArgs": "-bloxshade"
     }
   }
 }

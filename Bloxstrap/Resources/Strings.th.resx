@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bootstrapper.AutoUpdateFailed" xml:space="preserve">
-    <value>Bloxstrap ไม่สามารถอัปเดตเป็นเวอร์ชั่น {0} โดยอัตโนมัติได้. โปรดอัพเดทด้วยตัวเองเเละใช้งานจากเว็ปไซต์</value>
+    <value>Teststrap ไม่สามารถอัปเดตเป็นเวอร์ชั่น {0} โดยอัตโนมัติได้. โปรดอัพเดทด้วยตัวเองเเละใช้งานจากเว็ปไซต์</value>
   </data>
   <data name="Bootstrapper.ConfirmLaunch" xml:space="preserve">
     <value>Roblox กําลังทํางานอยู่เเละการเปิดอีกหน้าต่างจะปิด Roblox คุณเเน่ใจไหมว่าคุณจะเปิดอีกหน้าต่าง?</value>
@@ -127,13 +127,13 @@
     <value>Roblox อาจจะล่มตอนนี้. ดู {0} เพื่อข้อมูลเพิ่มเติม</value>
   </data>
   <data name="Dialog.Connectivity.BadConnection" xml:space="preserve">
-    <value>ไม่สามารถเชื่อมต่อได้, อาจเกิดจากการเชื่อมต่ออินเตอร์เน็ตที่ไม่เสถียรหรือการปิดกั้นจากไฟร์วอลล์, หากการเชื่อมต่อของคุณเป็นปกติโปรดตรวจสอบว่าแอนตี้ไวรัสของคุณไม่ได้กำลังปิดกั้น Bloxstrap</value>
+    <value>ไม่สามารถเชื่อมต่อได้, อาจเกิดจากการเชื่อมต่ออินเตอร์เน็ตที่ไม่เสถียรหรือการปิดกั้นจากไฟร์วอลล์, หากการเชื่อมต่อของคุณเป็นปกติโปรดตรวจสอบว่าแอนตี้ไวรัสของคุณไม่ได้กำลังปิดกั้น Teststrap</value>
   </data>
   <data name="Bootstrapper.FirstRunUninstall" xml:space="preserve">
-    <value>คุณต้องติดตั้ง Bloxstrap ก่อนถอนการติดตั้ง.</value>
+    <value>คุณต้องติดตั้ง Teststrap ก่อนถอนการติดตั้ง.</value>
   </data>
   <data name="Bootstrapper.NotEnoughSpace" xml:space="preserve">
-    <value>Bloxstrap มีพื้นที่ไม่เพียงพอสำหรับการดาวน์โหลดและติดตั้ง Roblox กรุณาลบไฟล์บางส่วนและลองใหม่อีกครั้งในภายหลัง</value>
+    <value>Teststrap มีพื้นที่ไม่เพียงพอสำหรับการดาวน์โหลดและติดตั้ง Roblox กรุณาลบไฟล์บางส่วนและลองใหม่อีกครั้งในภายหลัง</value>
   </data>
   <data name="Bootstrapper.Status.ApplyingModifications" xml:space="preserve">
     <value>กำลังปรับใช้ตัวดัดแปลง Roblox...</value>
@@ -157,9 +157,6 @@
   <data name="Bootstrapper.Status.Upgrading" xml:space="preserve">
     <value>กำลังอัพเกรด {product}...</value>
   </data>
-  <data name="Bootstrapper.Status.UpgradingBloxstrap" xml:space="preserve">
-    <value>กำลังดาวน์โหลดเวอร์ชั่นล่าสุดของ Bloxstrap...</value>
-  </data>
   <data name="Bootstrapper.Status.WaitingOtherInstances" xml:space="preserve">
     <value>กำลังรออินสแตนซ์อื่นๆ...</value>
   </data>
@@ -172,10 +169,10 @@
     <comment>Text for style previews that use text button that says "Cancel"</comment>
   </data>
   <data name="Bootstrapper.SuccessfullyUninstalled" xml:space="preserve">
-    <value>Bloxstrap ได้ถอนการติดตั้งเสร็จสิ้นแล้ว</value>
+    <value>Teststrap ได้ถอนการติดตั้งเสร็จสิ้นแล้ว</value>
   </data>
   <data name="Bootstrapper.Uninstall.RobloxRunning" xml:space="preserve">
-    <value>Roblox กำลังถูกใช้งาน, แต่ต้องถูกปิดก่อนทำการถอนการติดตั้ง Bloxstrap. คุณต้องการปิด Roblox ตอนนี้หรือไม่.</value>
+    <value>Roblox กำลังถูกใช้งาน, แต่ต้องถูกปิดก่อนทำการถอนการติดตั้ง Teststrap. คุณต้องการปิด Roblox ตอนนี้หรือไม่.</value>
   </data>
   <data name="Bootstrapper.WMFNotFound" xml:space="preserve">
     <value>Roblox ต้องการใช้งาน Windows Media Foundation ซึ่งเป็นไปได้ว่าคุณไม่มีมัน เพราะคุณกำลังใช้ N edition ของ Windows โปรดติดตั้งก่อนแล้วเริ่มต้นใช้งาน Roblox อีกครั้ง</value>
@@ -279,22 +276,22 @@
     <value>เชื่อมต่อล้มเหลว</value>
   </data>
   <data name="Dialog.Connectivity.UnableToConnect" xml:space="preserve">
-    <value>Bloxstrap ไม่สามารถเชื่อมต่อกับ {0} ได้</value>
+    <value>Teststrap ไม่สามารถเชื่อมต่อกับ {0} ได้</value>
     <comment>{0} is the name of a service (i.e. Roblox, GitHub)</comment>
   </data>
   <data name="Dialog.Exception.CopyLogContents" xml:space="preserve">
     <value>คัดลอกเนื้อหาที่บันทึกไว้</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>เกิดสิ่งไม่คาดคิดระหว่างการใช้งาน Bloxstrap</value>
+    <value>เกิดสิ่งไม่คาดคิดระหว่างการใช้งาน Teststrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
-    <value>เช็ค [Wiki ของ Bloxstrap]({0}) ก่อนเพื่อตรวจสอบว่าปัญหานี้ได้ถูกระบุวิธีการแก้ไขไว้แล้วหรือไม่
+    <value>เช็ค [Wiki ของ Teststrap]({0}) ก่อนเพื่อตรวจสอบว่าปัญหานี้ได้ถูกระบุวิธีการแก้ไขไว้แล้วหรือไม่
 
 หากไม่ ให้คุณรายงานปัญหานี้ผ่าน [Github issue]({1}) พร้อมไฟล์บันทึกข้อมูลที่ถูกสร้างขึ้น</value>
   </data>
   <data name="Dialog.Exception.Title" xml:space="preserve">
-    <value>ข้อยกเว้นสำหรับ Bloxstrap</value>
+    <value>ข้อยกเว้นสำหรับ Teststrap</value>
   </data>
   <data name="Common.Custom" xml:space="preserve">
     <value>กำหนดเอง</value>
@@ -309,10 +306,10 @@
     <value>Byfron ปลอม (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (ดั้งเดิม)</value>
+    <value>Teststrap (ดั้งเดิม)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Glass)</value>
+    <value>Teststrap (Glass)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -356,6 +353,18 @@
   <data name="Enums.FlagPresets.InGameMenuVersion.V4" xml:space="preserve">
     <value>2023 (V4)</value>
   </data>
+  <data name="Enums.FlagPresets.LightingMode.Default" xml:space="preserve">
+    <value>เกมเป็นผู้เลือก</value>
+  </data>
+  <data name="Enums.FlagPresets.LightingMode.Future" xml:space="preserve">
+    <value>Future (Phase 3)</value>
+  </data>
+  <data name="Enums.FlagPresets.LightingMode.ShadowMap" xml:space="preserve">
+    <value>Shadow Map (Phase 2)</value>
+  </data>
+  <data name="Enums.FlagPresets.LightingMode.Voxel" xml:space="preserve">
+    <value>Voxel (Phase 1)</value>
+  </data>
   <data name="Enums.FlagPresets.RenderingMode.D3D10" xml:space="preserve">
     <value>Direct3D 10</value>
   </data>
@@ -378,10 +387,10 @@
     <value>สว่าง</value>
   </data>
   <data name="InstallChecker.Updated" xml:space="preserve">
-    <value>Bloxstrap ได้รับการอัปเกรดเป็น v{0}</value>
+    <value>Teststrap ได้รับการอัปเกรดเป็น v{0}</value>
   </data>
   <data name="InstallChecker.VersionDifferentThanInstalled" xml:space="preserve">
-    <value>เวอร์ชั่นของ Bloxstrap ที่คุณใช้งานอยู่นั้นจะแตกต่างออกไปกับเวอร์ชั่นที่คุณได้ติดตั้งไว้
+    <value>เวอร์ชั่นของ Teststrap ที่คุณใช้งานอยู่นั้นจะแตกต่างออกไปกับเวอร์ชั่นที่คุณได้ติดตั้งไว้
 คุณต้องการอัพเกรดให้เป็นเวอร์ชั่นล่าสุดมั้ย?</value>
   </data>
   <data name="Menu.About.Contributors" xml:space="preserve">
@@ -391,7 +400,7 @@
     <value>Code</value>
   </data>
   <data name="Menu.About.Contributors.Description" xml:space="preserve">
-    <value>คนเหล่านี้คือคนที่มีส่วนร่วมใน Bloxstrap และช่วยพัฒนามันให้เป็นอย่างที่เป็น.</value>
+    <value>คนเหล่านี้คือคนที่มีส่วนร่วมใน Teststrap และช่วยพัฒนามันให้เป็นอย่างที่เป็น.</value>
   </data>
   <data name="Menu.About.Contributors.FeatureIdeas" xml:space="preserve">
     <value>ไอเดียเกี่ยวกับฟีเจอร์</value>
@@ -437,7 +446,7 @@
     <value>โปรดทราบว่าการแก้ไขจะไม่มีผลในทันทีจนว่าคุณจะปิด Roblox ที่เปิดอยู่ทั้งหมด</value>
   </data>
   <data name="Menu.AlreadyRunning.Title" xml:space="preserve">
-    <value>Bloxstrap ได้ทำงานอยู่แล้ว</value>
+    <value>Teststrap ได้ทำงานอยู่แล้ว</value>
   </data>
   <data name="Menu.Appearance.Bootstrapper.Description" xml:space="preserve">
     <value>คุณสามารถทำให้มันดูแตกต่างออกไปได้เหมือนกับ Retro หรือให้เป็นแบบ Roblox เหมือนเดิม</value>
@@ -464,7 +473,7 @@
     <value>ชื่อ</value>
   </data>
   <data name="Menu.Appearance.Description" xml:space="preserve">
-    <value>ตั้งค่าว่า Bloxstrap ควรจะเป็นอย่างไร</value>
+    <value>ตั้งค่าว่า Teststrap ควรจะเป็นอย่างไร</value>
   </data>
   <data name="Menu.Appearance.Global.Theme.Title" xml:space="preserve">
     <value>ธีมที่ใช้อยู่</value>
@@ -488,10 +497,10 @@
     <value>การแสดงผล</value>
   </data>
   <data name="Menu.Behaviour.AutoUpdate.Description" xml:space="preserve">
-    <value>Bloxstrap จะเช็คและอัพเดทโดยอัตโนมัติเมื่อเปิด Roblox อีกครั้ง</value>
+    <value>Teststrap จะเช็คและอัพเดทโดยอัตโนมัติเมื่อเปิด Roblox อีกครั้ง</value>
   </data>
   <data name="Menu.Behaviour.AutoUpdate.Title" xml:space="preserve">
-    <value>อัพเดท Bloxstrap โดยอัตโนมัติ</value>
+    <value>อัพเดท Teststrap โดยอัตโนมัติ</value>
   </data>
   <data name="Menu.Behaviour.ConfirmLaunches.Description" xml:space="preserve">
     <value>ป้องกันการปิดเกมโดยไม่ได้ตั้งใจจากการเปิดใหม่อีกหน้าต่าง</value>
@@ -500,7 +509,7 @@
     <value>ถามให้แน่ใจเมื่อมีการเปิด Roblox ใหม่อีกหน้าต่างนึง</value>
   </data>
   <data name="Menu.Behaviour.Description" xml:space="preserve">
-    <value>กำหนดสิ่งที่ Bloxstrap ควรทำเมื่อเปิด Roblox</value>
+    <value>กำหนดสิ่งที่ Teststrap ควรทำเมื่อเปิด Roblox</value>
   </data>
   <data name="Menu.Behaviour.ForceRobloxReinstall.Description" xml:space="preserve">
     <value>Roblox จะติดตั้งใหม่อีกครั้งเมื่อกดเล่นครั้งต่อไป</value>
@@ -571,12 +580,30 @@
   <data name="Menu.FastFlagEditor.Title" xml:space="preserve">
     <value>ตัวแก้ไข Fast Flag</value>
   </data>
+  <data name="Menu.FastFlagEditor.Warning.Back" xml:space="preserve">
+    <value>กลับไป</value>
+  </data>
+  <data name="Menu.FastFlagEditor.Warning.Continue" xml:space="preserve">
+    <value>ฉันรู้ว่าฉันทำอะไรอยู่</value>
+  </data>
+  <data name="Menu.FastFlagEditor.Warning.Header" xml:space="preserve">
+    <value>คุณรู้มั้ยว่าคุณกำลังทำอะไรอยู่?</value>
+  </data>
+  <data name="Menu.FastFlagEditor.Warning.Text" xml:space="preserve">
+    <value>Fast Flags นั้นทรงพลังมาก เนื่องจากมีไว้สำหรับวิศวกร Roblox เท่านั้น แม้ว่าจะมีประโยชน์มาก แต่ตั้งค่าด้วยตนเองนั้นอาจทำให้เกิดปัญหาร้ายแรงกับความเสถียรและฟังก์ชันการทำงานได้ อย่าใช้โปรแกรมแก้ไขหากคุณไม่แน่ใจว่ากำลังทำอะไรอยู่
+
+อย่าใช้สิ่งนี้เพื่อนำเข้า "รายการ flag" จำนวนมาก ที่สร้างโดยบุคคลอื่นที่สัญญาว่าจะปรับปรุงประสิทธิภาพหรือเช่นนั้น สิ่งเหล่านี้อยู่ภายใต้ปัญหาที่กล่าวมาข้างต้น และพวกมันจะสร้างปัญหาให้กับคุณ เนื่องจากคุณจะไม่คิดให้ดีถึงสิ่งที่พวกเขากำลังจะทำ หากคุณกำลังจะทำอย่างนั้น ได้โปรดกลับไป</value>
+  </data>
   <data name="Menu.FastFlags.Description" xml:space="preserve">
     <value>ควบคุมพารามิเตอร์และฟีเจอร์ของ Roblox แบบเจาะจง</value>
   </data>
   <data name="Menu.FastFlags.Editor.Description" xml:space="preserve">
     <value>จัดการ Flag ของตัวเอง โปรดระวัง</value>
     <comment>Title is Menu.FastFlagEditor.Title</comment>
+  </data>
+  <data name="Menu.FastFlags.Help.Description" xml:space="preserve">
+    <value>เรียนรู้การใช้งาน Fast Flags ว่ามันเป็นอย่างไร และใช้งานอย่างไร</value>
+    <comment>Title is Common.Help</comment>
   </data>
   <data name="Menu.FastFlags.Presets.D3DExclusiveFullscreenInfo" xml:space="preserve">
     <value>Direct3D [พิเศษสำหรับโหมดเต็มหน้าจอ]({0}) โดยใช้ Alt+Enter ถูกเปิดไว้เป็นค่าเริ่มต้น</value>
@@ -600,10 +627,10 @@
     <value>Icon files</value>
   </data>
   <data name="Menu.InstallLocation.CantInstall" xml:space="preserve">
-    <value>Bloxstrap ไม่สามารถติดตั้งได้ โปรดเลือกพื้นที่การติดตั้งอื่น หรือสามารถใช้พื้นที่การติดตั้งที่เป็นค่าเริ่มต้นได้โดยการกดปุ่ม reset</value>
+    <value>Teststrap ไม่สามารถติดตั้งได้ โปรดเลือกพื้นที่การติดตั้งอื่น หรือสามารถใช้พื้นที่การติดตั้งที่เป็นค่าเริ่มต้นได้โดยการกดปุ่ม reset</value>
   </data>
   <data name="Menu.InstallLocation.NotEmpty" xml:space="preserve">
-    <value>โฟล์เดอร์ที่คุณเลือกในการติดตั้ง Bloxstrap นั้นมีอยู่แล้วและโฟล์เดอร์นั้นไม่ว่าง ค่อนข้างแนะนำว่าให้ติดตั้ง Bloxstrap ในโฟล์เดอร์ที่ยังว่างอยู่
+    <value>โฟล์เดอร์ที่คุณเลือกในการติดตั้ง Teststrap นั้นมีอยู่แล้วและโฟล์เดอร์นั้นไม่ว่าง ค่อนข้างแนะนำว่าให้ติดตั้ง Teststrap ในโฟล์เดอร์ที่ยังว่างอยู่
 
 เปลี่ยนเป็นโฟล์เดอร์ที่แนะนำ:
 {0}
@@ -616,7 +643,7 @@
     <value>คุณจะต้องเลือกตำแหน่งในการติดตั้ง</value>
   </data>
   <data name="Menu.InstallLocation.NoWritePerms" xml:space="preserve">
-    <value>Bloxstrap ไม่มีสิทธิ์แก้ไขในโฟลเดอร์ที่คุณเลือก กรุณาเลือกตำแหน่งอื่นในการติดตั้ง</value>
+    <value>Teststrap ไม่มีสิทธิ์แก้ไขในโฟลเดอร์ที่คุณเลือก กรุณาเลือกตำแหน่งอื่นในการติดตั้ง</value>
   </data>
   <data name="Menu.Integrations.ActivityTracking" xml:space="preserve">
     <value>การติดตามกิจกรรม</value>
@@ -667,7 +694,7 @@
     <value>ไม่ออกไปที่เเอป desktop</value>
   </data>
   <data name="Menu.Integrations.EnableActivityTracking.Description" xml:space="preserve">
-    <value>อนุญาตให้ Bloxstrap ตรวจจับเกม Roblox ที่คุณกำลังเล่น ฟีเจอร์บางอย่างอาจต้องใช้สิ่งนี้</value>
+    <value>อนุญาตให้ Teststrap ตรวจจับเกม Roblox ที่คุณกำลังเล่น ฟีเจอร์บางอย่างอาจต้องใช้สิ่งนี้</value>
   </data>
   <data name="Menu.Integrations.EnableActivityTracking.Title" xml:space="preserve">
     <value>เปิดตัวติดตามกิจกรรม</value>
@@ -700,6 +727,9 @@
   </data>
   <data name="Menu.Mods.Misc.CustomFont.Choose" xml:space="preserve">
     <value>เลือกฟอนต์...</value>
+  </data>
+  <data name="Menu.Mods.Misc.CustomFont.Description" xml:space="preserve">
+    <value>ขนาดของฟอร์นสามารถเปลี่ยนได้ในแท็บ Engine Setting</value>
   </data>
   <data name="Menu.Mods.Misc.CustomFont.Invalid" xml:space="preserve">
     <value>ไฟล์ที่คุณเลือกไม่ใช่ไฟล์ฟอนต์ที่ถูกต้อง</value>
@@ -756,7 +786,7 @@
     <value>บันทึกการตั้งค่าเเล้ว!</value>
   </data>
   <data name="Menu.Title" xml:space="preserve">
-    <value>ตั้งค่า Bloxstrap</value>
+    <value>ตั้งค่า Teststrap</value>
   </data>
   <data name="Dialog.LanguageSelector.Header" xml:space="preserve">
     <value>เลือกใช้ภาษาที่ต้องการ</value>
@@ -770,20 +800,32 @@
   <data name="Menu.Appearance.Language.Description" xml:space="preserve">
     <value>จำเป็นต้องเปิดเกมใหม่เพื่อทำให้การเปลี่ยนแปลงมีผล</value>
   </data>
+  <data name="Menu.Behaviour.ForceRobloxLanguage.Title" xml:space="preserve">
+    <value>อนุญาตให้ใช้ภาษาที่ Roblox ไม่รองรับได้</value>
+  </data>
+  <data name="Menu.Behaviour.ForceRobloxLanguage.Description" xml:space="preserve">
+    <value>ใช้กับเพียงเกมที่เปิดจากเว็บไซต์ Roblox เท่านั้น</value>
+  </data>
   <data name="Enums.FlagPresets.InGameMenuVersion.V4Chrome" xml:space="preserve">
     <value>2023 (V4 + UI ใหม่)</value>
   </data>
   <data name="Menu.FastFlags.Presets.Categories.Rendering" xml:space="preserve">
     <value>การเรนเดอร์และกราฟฟิก</value>
   </data>
+  <data name="Menu.FastFlags.Presets.Categories.UserInterface" xml:space="preserve">
+    <value>เค้าโครงและแสดงผลของผู้ใช้</value>
+  </data>
   <data name="Menu.FastFlags.ManagerEnabled.Title" xml:space="preserve">
-    <value>อนุญาตให้ Bloxstrap จัดการ Fast Flags</value>
+    <value>อนุญาตให้ Teststrap จัดการ Fast Flags</value>
   </data>
   <data name="Menu.FastFlags.ManagerEnabled.Description" xml:space="preserve">
     <value>การปิดตัวเลือกนี้จะปิดกั้นทุกอย่างที่ถูกตั้งค่าที่นี่จากการเปิดใช้กับ Roblox</value>
   </data>
   <data name="Menu.FastFlags.Presets.MSAA.Title" xml:space="preserve">
     <value>Anti-aliasing quality (MSAA)</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FullscreenTitlebar.Description" xml:space="preserve">
+    <value>หยุดมันจากการแสดงผลเมื่อคุณขยับเมาส์ของคุณไปที่บนสุดของหน้าจอ</value>
   </data>
   <data name="Menu.FastFlags.Presets.TextureQuality.Title" xml:space="preserve">
     <value>คุณภาพของพื้นผิว</value>
@@ -801,7 +843,7 @@
     <value>เลเวล 3 (สูงที่สุด)</value>
   </data>
   <data name="Dialog.Connectivity.UnableToDownload" xml:space="preserve">
-    <value>Bloxstrap ไม่สามารถดาวน์โหลด Roblox ได้</value>
+    <value>Teststrap ไม่สามารถดาวน์โหลด Roblox ได้</value>
   </data>
   <data name="Dialog.Connectivity.UnableToDownloadReason" xml:space="preserve">
     <value>ไม่สามารถดาวน์โหลด Roblox ได้ในขณะนี้ โปรดอ่านข้อมูลเพิ่มเติมจากหน้าให้การช่วยเหลือ {0}</value>
@@ -822,7 +864,7 @@
     <value>ช่องข้อมูล '{0}' ไม่ถูกต้องเนื่องจากค่าจะต้องเป็นตัวเลข</value>
   </data>
   <data name="Logger.NoWriteMode" xml:space="preserve">
-    <value>จะไม่มีการเก็บข้อมูลสำหรับการเปิดเกมครั้งนี้เนื่องจาก Bloxstrap ไม่สามารถเขียนข้อมูลไปยังโฟลเดอร์ '{0}' ได้</value>
+    <value>จะไม่มีการเก็บข้อมูลสำหรับการเปิดเกมครั้งนี้เนื่องจาก Teststrap ไม่สามารถเขียนข้อมูลไปยังโฟลเดอร์ '{0}' ได้</value>
   </data>
   <data name="Common.Default" xml:space="preserve">
     <value>ค่าเริ่มต้น</value>
@@ -837,7 +879,7 @@
     <value>รายการสำหรับ '{0}' ไม่ถูกต้องเนื่องจากตัวกรองสถานที่ไม่ได้จัดรูปแบบอย่างถูกต้อง</value>
   </data>
   <data name="Installer.Title" xml:space="preserve">
-    <value>ติดตั้ง Bloxstrap</value>
+    <value>ติดตั้ง Teststrap</value>
   </data>
   <data name="Installer.Welcome.Title" xml:space="preserve">
     <value>ยินดีต้อนรับ</value>
@@ -856,18 +898,18 @@
     <value>ถัดไป</value>
   </data>
   <data name="Installer.Welcome.MainText" xml:space="preserve">
-    <value>ขอบคุณสำหรับการดาวน์โหลด Bloxstrap
+    <value>ขอบคุณสำหรับการดาวน์โหลด Teststrap
 
-เว็บไซต์อย่างเป็นทางการสำหรับการดาวน์โหลด Bloxstrap มีเพียง {0} และ {1} เท่านั้น กรุณาตรวจสอบว่าคุณได้รับโปรแกรมจากแหล่งที่มาที่เป็นทางการ
+เว็บไซต์อย่างเป็นทางการสำหรับการดาวน์โหลด Teststrap มีเพียง {0} และ {1} เท่านั้น กรุณาตรวจสอบว่าคุณได้รับโปรแกรมจากแหล่งที่มาที่เป็นทางการ
 
-กระบวนการติดตั้งนี้จะรวดเร็วและง่ายดาย และคุณจะสามารถปรับแต่งการตั้งค่าต่าง ๆ ของ Bloxstrap ได้หลังจากการติดตั้งเสร็จสิ้น</value>
+กระบวนการติดตั้งนี้จะรวดเร็วและง่ายดาย และคุณจะสามารถปรับแต่งการตั้งค่าต่าง ๆ ของ Teststrap ได้หลังจากการติดตั้งเสร็จสิ้น</value>
     <comment>{0} and {1} are URLs</comment>
   </data>
   <data name="Installer.Welcome.NextToContinue" xml:space="preserve">
     <value>กรุณาคลิกที่ 'ถัดไป' เพื่อดำเนินการต่อ</value>
   </data>
   <data name="Installer.Welcome.UpdateNotice" xml:space="preserve">
-    <value>คุณกำลังพยายามที่จะติดตั้งเวอร์ชั่น {0} ของ Bloxstrap, แต่เวอร์ชั่นล่าสุดคือ {1} คุณต้องการดาวน์โหลดมันหรือไม่</value>
+    <value>คุณกำลังพยายามที่จะติดตั้งเวอร์ชั่น {0} ของ Teststrap, แต่เวอร์ชั่นล่าสุดคือ {1} คุณต้องการดาวน์โหลดมันหรือไม่</value>
   </data>
   <data name="Installer.Install.Location.Title" xml:space="preserve">
     <value>สถานที่ที่จะติดตั้ง</value>
@@ -888,17 +930,17 @@
     <value>ไอคอนบนเมนูเริ่มต้น</value>
   </data>
   <data name="Installer.Completion.Text" xml:space="preserve">
-    <value>Bloxstrap ได้ติดตั้งเสร็จเรียบร้อยแล้ว
+    <value>Teststrap ได้ติดตั้งเสร็จเรียบร้อยแล้ว
 
-Roblox ยังไม่ได้ถูกติดตั้ง ซึ่งจะเกิดขึ้นเมื่อคุณเปิดใช้งานมันครั้งแรกผ่าน Bloxstrap อย่างไรก็ตาม ก่อนที่คุณจะทำเช่นนั้น คุณอาจต้องการตั้งค่าการกำหนดค่าของ Bloxstrap ก่อน
+Roblox ยังไม่ได้ถูกติดตั้ง ซึ่งจะเกิดขึ้นเมื่อคุณเปิดใช้งานมันครั้งแรกผ่าน Teststrap อย่างไรก็ตาม ก่อนที่คุณจะทำเช่นนั้น คุณอาจต้องการตั้งค่าการกำหนดค่าของ Teststrap ก่อน
 
-นอกจากนี้ ควรหลีกเลี่ยงการใช้ทางลัด "Roblox Player" เพื่อเปิด Roblox เพราะ Bloxstrap จะไม่เปิดพร้อมกับ Roblox หากคุณไม่เห็น Bloxstrap แสดงขึ้นเมื่อเปิดจากเว็บไซต์ เพียงแค่เปิด Roblox ผ่าน Bloxstrap จากเดสก์ท็อปหนึ่งครั้งเพื่อแก้ไขปัญหานี้</value>
+นอกจากนี้ ควรหลีกเลี่ยงการใช้ทางลัด "Roblox Player" เพื่อเปิด Roblox เพราะ Teststrap จะไม่เปิดพร้อมกับ Roblox หากคุณไม่เห็น Teststrap แสดงขึ้นเมื่อเปิดจากเว็บไซต์ เพียงแค่เปิด Roblox ผ่าน Teststrap จากเดสก์ท็อปหนึ่งครั้งเพื่อแก้ไขปัญหานี้</value>
   </data>
   <data name="Installer.Completion.Settings.Title" xml:space="preserve">
-    <value>กำหนดค่าการตั้งค่าของ Bloxstrap</value>
+    <value>กำหนดค่าการตั้งค่าของ Teststrap</value>
   </data>
   <data name="Installer.Completion.Settings.Description" xml:space="preserve">
-    <value>ปรับแต่งการตั้งค่าทั้งหมดที่ Bloxstrap มีให้</value>
+    <value>ปรับแต่งการตั้งค่าทั้งหมดที่ Teststrap มีให้</value>
   </data>
   <data name="Installer.Completion.Launch.Title" xml:space="preserve">
     <value>ติดตั้งและเปิดใช้งาน Roblox</value>
@@ -907,22 +949,22 @@ Roblox ยังไม่ได้ถูกติดตั้ง ซึ่งจ
     <value>จะนำคุณเข้าสู่แอปบนเดสก์ท็อปเมื่อทุกอย่างเสร็จสิ้น</value>
   </data>
   <data name="Uninstaller.Title" xml:space="preserve">
-    <value>ถอนการติดตั้ง Bloxstrap</value>
+    <value>ถอนการติดตั้ง Teststrap</value>
   </data>
   <data name="Uninstaller.Text" xml:space="preserve">
-    <value>การถอนการติดตั้งจะลบ Bloxstrap ออกจากระบบของคุณ และจะตั้งค่าตัวเปิด Roblox เริ่มต้นใหม่โดยอัตโนมัติหากยังติดตั้งอยู่
+    <value>การถอนการติดตั้งจะลบ Teststrap ออกจากระบบของคุณ และจะตั้งค่าตัวเปิด Roblox เริ่มต้นใหม่โดยอัตโนมัติหากยังติดตั้งอยู่
 
 หากคุณกำลังถอนการติดตั้งหรือทำการติดตั้งใหม่เนื่องจากมีปัญหากับ Roblox โปรดอ่าน [หน้านี้]({0}) ก่อน
 
-ขั้นตอนการถอนการติดตั้งอาจไม่สามารถทำความสะอาดตัวเองได้ทั้งหมด ดังนั้นคุณอาจต้องทำการลบไฟล์ที่เหลือออกด้วยตนเองในตำแหน่งที่ติดตั้ง Bloxstrap
+ขั้นตอนการถอนการติดตั้งอาจไม่สามารถทำความสะอาดตัวเองได้ทั้งหมด ดังนั้นคุณอาจต้องทำการลบไฟล์ที่เหลือออกด้วยตนเองในตำแหน่งที่ติดตั้ง Teststrap
 
-Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
+Teststrap จะติดตั้งไว้ที่ "{1}"</value>
   </data>
   <data name="Uninstaller.KeepData.Label" xml:space="preserve">
     <value>เก็บการตั้งค่าและม็อดของฉันไว้</value>
   </data>
   <data name="Uninstaller.KeepData.Description" xml:space="preserve">
-    <value>พวกมันจะถูกเก็บไว้ในตำแหน่งที่ Bloxstrap ติดตั้งไว้ และจะถูกกู้คืนโดยอัตโนมัติเมื่อทำการติดตั้งใหม่</value>
+    <value>พวกมันจะถูกเก็บไว้ในตำแหน่งที่ Teststrap ติดตั้งไว้ และจะถูกกู้คืนโดยอัตโนมัติเมื่อทำการติดตั้งใหม่</value>
   </data>
   <data name="Uninstaller.Uninstall" xml:space="preserve">
     <value>ถอนการติดตั้ง</value>
@@ -943,19 +985,19 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>คุณยังไม่ได้ติดตั้ง WebView2 runtime บางฟีเจอร์ของ Roblox จะทำงานไม่ถูกต้องหากไม่มีมัน เช่น แอปบนเดสก์ท็อป คุณต้องการดาวน์โหลดตอนนี้ไหม?</value>
   </data>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
-    <value>Bloxstrap ไม่สามารถสร้างทางลัดสำหรับเดสก์ท็อปและเมนูเริ่มต้นได้ ลองสร้างทางลัดเหล่านั้นในภายหลังผ่านการตั้งค่า</value>
+    <value>Teststrap ไม่สามารถสร้างทางลัดสำหรับเดสก์ท็อปและเมนูเริ่มต้นได้ ลองสร้างทางลัดเหล่านั้นในภายหลังผ่านการตั้งค่า</value>
   </data>
   <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
     <value>ตรวจสอบ [Bloxstrap Wiki]({0}) ก่อนเพื่อดูว่าปัญหานี้ได้รับการแก้ไขแล้วหรือไม่
 
-ถ้ายังไม่ได้รับการแก้ไข กรุณาแจ้งปัญหานี้ไปยังผู้ดูแลของฟอร์คนี้ อย่าแจ้งปัญหานี้ไปที่ GitHub ของ Bloxstrap เพราะนี่เป็นเวอร์ชันที่ไม่เป็นทางการ</value>
+ถ้ายังไม่ได้รับการแก้ไข กรุณาแจ้งปัญหานี้ไปยังผู้ดูแลของฟอร์คนี้ อย่าแจ้งปัญหานี้ไปที่ GitHub ของ Teststrap เพราะนี่เป็นเวอร์ชันที่ไม่เป็นทางการ</value>
     <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
   </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>นี่คือตัวลัดทั่วไปที่นำไปสู่เมนูการเปิดใช้งานหลายตัวเลือก ตัวลัดสำหรับฟังก์ชันเฉพาะสามารถสร้างได้ในภายหลังในส่วนการตั้งค่า</value>
   </data>
   <data name="Menu.Shortcuts.Description" xml:space="preserve">
-    <value>กำหนดวิธีการที่ Bloxstrap สามารถเปิดใช้งานได้อย่างสะดวก</value>
+    <value>กำหนดวิธีการที่ Teststrap สามารถเปิดใช้งานได้อย่างสะดวก</value>
   </data>
   <data name="Menu.Shortcuts.General.Title" xml:space="preserve">
     <value>ทั่วไป</value>
@@ -984,9 +1026,6 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
   <data name="Dialog.AlreadyRunning.Uninstaller" xml:space="preserve">
     <value>กรุณารอให้การถอนการติดตั้งเสร็จสิ้น</value>
   </data>
-  <data name="About.Title" xml:space="preserve">
-    <value>เกี่ยวกับ Bloxstrap</value>
-  </data>
   <data name="About.Licenses.Title" xml:space="preserve">
     <value>ใบอนุญาต</value>
     <comment>Referring to code licenses; see https://opensource.org/licenses for example</comment>
@@ -998,10 +1037,18 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก คุณแน่ใจหรือไม่ว่าต้องการปิดโดยไม่บันทึก?</value>
   </data>
   <data name="InstallChecker.VersionLessThanInstalled" xml:space="preserve">
-    <value>เวอร์ชันของ Bloxstrap ที่คุณเปิดใช้งานนั้นเก่ากว่าเวอร์ชันที่คุณติดตั้งอยู่ในขณะนี้ อาจเกิดปัญหาและการตั้งค่าของคุณอาจถูกเปลี่ยนแปลง แนะนำให้ทำการติดตั้งใหม่ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?</value>
+    <value>เวอร์ชันของ Teststrap ที่คุณเปิดใช้งานนั้นเก่ากว่าเวอร์ชันที่คุณติดตั้งอยู่ในขณะนี้ อาจเกิดปัญหาและการตั้งค่าของคุณอาจถูกเปลี่ยนแปลง แนะนำให้ทำการติดตั้งใหม่ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?</value>
   </data>
   <data name="Dialog.PlayerError.FailedLaunch" xml:space="preserve">
     <value>Roblox ไม่สามารถเปิดใช้งานได้</value>
+  </data>
+  <data name="Dialog.PlayerError.Crash" xml:space="preserve">
+    <value>Roblox เกิดการขัดข้อง</value>
+  </data>
+  <data name="Dialog.PlayerError.HelpInformation" xml:space="preserve">
+    <value>สำหรับข้อมูลเกี่ยวกับสิ่งที่เกิดขึ้นและวิธีการแก้ไขโปรดอ่าน [บทความช่วยเหลือนี้]({0})
+
+ตรวจสอบว่า Roblox สามารถทำงานกับ [ตัวเปิดใช้เดิม]({1}) ได้หรือไม่ หากไม่ใช่เช่นนั้นแสดงว่าไม่ใช่ปัญหาของ Teststrap หากเป็นเช่นนั้นโปรดดูบทความช่วยเหลือ</value>
   </data>
   <data name="Common.NetworkError" xml:space="preserve">
     <value>ไม่สามารถโหลดข้อมูลได้เนื่องจากข้อผิดผลาดทางเครือข่าย</value>
@@ -1013,7 +1060,7 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>ผู้สนับสนุน</value>
   </data>
   <data name="About.Supporters.Description" xml:space="preserve">
-    <value>คนเหล่านี้คือคนที่สนับสนุน Bloxstrap ผ่าน Ko-fi ขอขอบคุณทุกท่านที่อยู่ในนี้ ทุกท่านในนี้ถูกเรียงอันดับโดยยอดรวมทั้งหมดของการสนับสนุน</value>
+    <value>คนเหล่านี้คือคนที่สนับสนุน Teststrap ผ่าน Ko-fi ขอขอบคุณทุกท่านที่อยู่ในนี้ ทุกท่านในนี้ถูกเรียงอันดับโดยยอดรวมทั้งหมดของการสนับสนุน</value>
   </data>
   <data name="JsonManager.SettingsLoadFailed" xml:space="preserve">
     <value>ไม่สามารถโหลดการตั้งค่าของคุณได้ การตั้งค่าถูกรีเซ็ตเป็นค่าตั้งต้น</value>
@@ -1043,12 +1090,12 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>ในการเปิดใช้งานครั้งนี้ Roblox จะไม่ถูกตรวจสอบการอัปเกรด และการเปลี่ยนแปลงม็อดจะไม่ถูกนำไปใช้</value>
   </data>
   <data name="Dialog.Connectivity.RobloxUpgradeNeeded" xml:space="preserve">
-    <value>เนื่องจาก Roblox จำเป็นต้องติดตั้งหรือต้องการการอัปเกรด Bloxstrap จึงไม่สามารถดำเนินการต่อได้</value>
+    <value>เนื่องจาก Roblox จำเป็นต้องติดตั้งหรือต้องการการอัปเกรด Teststrap จึงไม่สามารถดำเนินการต่อได้</value>
   </data>
   <data name="Installer.Install.CannotOverwrite" xml:space="preserve">
-    <value>Bloxstrap ได้ถูกติดตั้งในตำเเหน่งนี้มาก่อนเเละยังคงมีอยู่ อย่างไรก็ตาม โปรเเกรมติดตั้งไม่สามารถเขียนทับไฟล์เก่าได้
+    <value>Teststrap ได้ถูกติดตั้งในตำเเหน่งนี้มาก่อนเเละยังคงมีอยู่ อย่างไรก็ตาม โปรเเกรมติดตั้งไม่สามารถเขียนทับไฟล์เก่าได้
 
-กรุณาลบ Bloxstrap.exe จากตำเเหน่งติดตั้งด้วยตนเอง หรือลองรีสตารท์ระบบของคุณ จากนั้นลองติดตั้งใหม่อีกครั้ง</value>
+กรุณาลบ Teststrap.exe จากตำเเหน่งติดตั้งด้วยตนเอง หรือลองรีสตารท์ระบบของคุณ จากนั้นลองติดตั้งใหม่อีกครั้ง</value>
   </data>
   <data name="Common.NotAvailable" xml:space="preserve">
     <value>ไม่พร้อมใช้งาน</value>
@@ -1060,7 +1107,7 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>กำหนดค่าพารามิเตอร์ของแอปพลิเคชัน เช่น พฤติกรรมการปรับขนาด DPI และ [การเพิ่มประสิทธิภาพแบบเต็มหน้าจอ]({0})</value>
   </data>
   <data name="Common.RobloxNotInstalled" xml:space="preserve">
-    <value>Roblox ยังไม่ได้ติดตั้ง กรุณาเปิด Roblox ผ่าน Bloxstrap อย่างน้อยหนึ่งครั้งก่อนที่จะลองใช้ตัวเลือกนี้</value>
+    <value>Roblox ยังไม่ได้ติดตั้ง กรุณาเปิด Roblox ผ่าน Teststrap อย่างน้อยหนึ่งครั้งก่อนที่จะลองใช้ตัวเลือกนี้</value>
   </data>
   <data name="Installer.ShouldCancel" xml:space="preserve">
     <value>คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการติดตั้ง?</value>
@@ -1078,25 +1125,16 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>แตกไฟล์ไอคอน Roblox ไปยังโฟลเดอร์</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>อนุญาตให้คุณใช้ไอคอน Roblox จาก Bloxstrap สำหรับการสร้างทางลัดของคุณ [ดูวิธีการ] ({0})</value>
+    <value>อนุญาตให้คุณใช้ไอคอน Roblox จาก Teststrap สำหรับการสร้างทางลัดของคุณ [ดูวิธีการ] ({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
-    <value>Bloxstrap ไม่สามารถเขียนลงใน Windows Registry ได้ อาจมีซอฟต์เเวร์ป้องกันไวรัสที่เข้ามาขัดขวางเเละทำให้เกิดปัญหา กรุณาตรวจสอบเพื่อให้เเน่ใจว่าไม่มีอะไรที่จำกัดการทำงานของ Bloxstrap</value>
+    <value>Teststrap ไม่สามารถเขียนลงใน Windows Registry ได้ อาจมีซอฟต์เเวร์ป้องกันไวรัสที่เข้ามาขัดขวางเเละทำให้เกิดปัญหา กรุณาตรวจสอบเพื่อให้เเน่ใจว่าไม่มีอะไรที่จำกัดการทำงานของ Teststrap</value>
   </data>
   <data name="About.Supporters.Monthly" xml:space="preserve">
     <value>รายเดือน</value>
   </data>
   <data name="About.Supporters.OneOff" xml:space="preserve">
     <value>ครั้งเดียว</value>
-  </data>
-  <data name="Menu.Bloxstrap.Description" xml:space="preserve">
-    <value>กำหนดค่าเกี่ยวกับตัวเลือกที่เกี่ยวข้องกับพฤติกรรมของ Bloxstrap เอง</value>
-  </data>
-  <data name="Menu.Bloxstrap.Analytics.Title" xml:space="preserve">
-    <value>เปิดใช้งานการส่งข้อมูลวิเคราะห์</value>
-  </data>
-  <data name="Menu.Bloxstrap.Analytics.Description" xml:space="preserve">
-    <value>มันเป็นข้อมูลที่ไม่ระบุชื่อและไม่มีอะไรที่ไม่ดีแน่นอน สําหรับข้อมูลเกี่ยวกับสิ่งที่เรารวบรวมและเหตุผล โปรดดูที่ [นโยบายความเป็นส่วนตัวของเรา]({0})</value>
   </data>
   <data name="Common.Analytics" xml:space="preserve">
     <value>วิเคราะห์</value>
@@ -1119,7 +1157,7 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
 คุณต้องการเปิดใช้งานโหมดทดสอบหรือไม่?</value>
   </data>
   <data name="About.Translators.Description" xml:space="preserve">
-    <value>การแปลทั้งหมดของ Bloxstrap เป็นการรวบรวมจากผู้ใช้ผ่าน [Crowdin]({0}) ทุกคนที่ระบุอยู่ที่นี่คือผู้ที่อาสาสมัครเวลาและความพยายามของพวกเขาเพื่อช่วยในการแปล Bloxstrap ขอบคุณมาก ๆ สำหรับทุกคนที่นี่!</value>
+    <value>การแปลทั้งหมดของ Teststrap เป็นการรวบรวมจากผู้ใช้ผ่าน [Crowdin]({0}) ทุกคนที่ระบุอยู่ที่นี่คือผู้ที่อาสาสมัครเวลาและความพยายามของพวกเขาเพื่อช่วยในการแปล Teststrap ขอบคุณมาก ๆ สำหรับทุกคนที่นี่!</value>
   </data>
   <data name="Common.Navigation.Install" xml:space="preserve">
     <value>ติดตั้ง</value>
@@ -1139,7 +1177,7 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
     <value>กำหนดเอง</value>
   </data>
   <data name="Bootstrapper.FilesInUse" xml:space="preserve">
-    <value>Bloxstrap พยายามที่จะอัปเดต Roblox แต่ไม่สามารถทำได้เพราะมีไฟล์ของ Roblox ที่กำลังถูกใช้
+    <value>Teststrap พยายามที่จะอัปเดต Roblox แต่ไม่สามารถทำได้เพราะมีไฟล์ของ Roblox ที่กำลังถูกใช้
 
 โปรดปิดแอปพลิเคชันที่กำลังใช้ไฟล์ของ Roblox แล้วลองใหม่อีกครั้ง</value>
     <comment>This is *not* for when Roblox is still running when trying to upgrade. This applies to files being open (i.e. image assets)</comment>
@@ -1150,39 +1188,38 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
   </data>
   <data name="Common.Export" xml:space="preserve">
     <value>ส่งออก</value>
-    <comment>Currently used under the "Bloxstrap" settings tab for the button to export diagnostic data</comment>
+    <comment>Currently used under the "Teststrap" settings tab for the button to export diagnostic data</comment>
   </data>
-  <data name="Menu.Bloxstrap.ExportData.Title" xml:space="preserve">
-    <value>ส่งออกข้อมูลสำหรับวินิจฉัย</value>
+  <data name="Dialog.Connectivity.Preventing" xml:space="preserve">
+    <value>มีบางอย่างที่อาจทำให้ Teststrap ไม่สามารถเชื่อมต่อกับอินเทอร์เน็ตได้</value>
   </data>
-  <data name="Menu.Bloxstrap.ExportData.Description" xml:space="preserve">
-    <value>รวบรวมข้อมูลที่สามารถนำไปอัปโหลดบนออนไลน์เพื่อวินิจฉัยปัญหาที่คุณกำลังพบเจอ</value>
+  <data name="Dialog.Connectivity.TimedOut" xml:space="preserve">
+    <value>การเชื่อมต่อหมดเวลา, สึ่งอาจเป็นเพราะการเชื่อมต่ออินเทอร์เน็ตที่ไม่ดีหรือการบล็อกไฟร์วอลล์</value>
   </data>
-  <data name="Menu.Bloxstrap.ExportData.ExportConfig" xml:space="preserve">
-    <value>การตั้งค่า Bloxstrap</value>
-    <comment>Label that appears next to a checkbox</comment>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Menu.Channel.Description" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="Menu.Bloxstrap.ExportData.ExportLogs" xml:space="preserve">
-    <value>บันทึกของ Bloxstrap ทั้งหมด</value>
-    <comment>Label that appears next to a checkbox</comment>
+  <data name="Common.Channel" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.ChannelChanger.Description" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Common.Version" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Common.VersionGuid" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.Channel.RobloxUpgrades" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="App.OSDeprecation.Win7_81" xml:space="preserve">
     <value>Roblox ไม่รองรับ Windows 7 หรือ Windows 8.1 เพื่อเล่น Roblox ต่อไปโปรดอัปเกรดเป็น Windows 10 หรือใหม่กว่า</value>
   </data>
-  <data name="Bootstrapper.ExtractionFailed.Title" xml:space="preserve">
-    <value>ไม่สามารถเเตกไฟล์ได้</value>
-  </data>
-  <data name="Bootstrapper.ExtractionFailed.Message" xml:space="preserve">
-    <value>คอนเทนต์บางอย่างอาจหายไป บังคับติดตั้ง Roblox ใหม่อีกครั้งในตั้งค่าเพื่อแก้ไขปัญหานี้</value>
-  </data>
-  <data name="Bootstrapper.ModificationsFailed.Title" xml:space="preserve">
-    <value>ไม่สามารถบันทึกการเปลี่ยนเเปลงได้</value>
-  </data>
-  <data name="Bootstrapper.ModificationsFailed.Message" xml:space="preserve">
-    <value>การแก้ไขทั้งหมดอาจไม่ปรากฏในการเปิดเกมรอบนี้</value>
-  </data>
-  <data name="Menu.About.Licenses.Apache" xml:space="preserve">
-    <value>Apache License 2.0</value>
+  <data name="Bootstrapper.Status.UpgradingBloxstrap" xml:space="preserve">
+    <value>กำลังดาวน์โหลดเวอร์ชั่นล่าสุดของ Teststrap...</value>
   </data>
   <data name="Enums.CustomThemeTemplate.Blank" xml:space="preserve">
     <value>ว่างเปล่า</value>
@@ -1305,12 +1342,6 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
   <data name="CustomTheme.Editor.OpenThemeDirectory" xml:space="preserve">
     <value>เปิดที่ตั้งของธีม</value>
   </data>
-  <data name="Common.CreateNew" xml:space="preserve">
-    <value>สร้างใหม่</value>
-  </data>
-  <data name="Common.Import" xml:space="preserve">
-    <value>นำเข้า</value>
-  </data>
   <data name="CustomTheme.Add.Title" xml:space="preserve">
     <value>เพิ่มธีมของตัวเอง</value>
   </data>
@@ -1352,23 +1383,11 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
   <data name="Menu.Appearance.CustomThemes.NoneSelected" xml:space="preserve">
     <value>ไม่มีธีมกําหนดเองเลือกไว้</value>
   </data>
-  <data name="Common.Rename" xml:space="preserve">
-    <value>เปลี่ยนชื่อ</value>
-  </data>
-  <data name="Common.Edit" xml:space="preserve">
-    <value>แก้ไข</value>
-  </data>
   <data name="Menu.Appearance.CustomThemes.DeleteFailed" xml:space="preserve">
     <value>ไม่สามารถลบธีมกําหนดเองได้ {0}: {1}</value>
   </data>
   <data name="Menu.Appearance.CustomThemes.RenameFailed" xml:space="preserve">
     <value>ไม่สามารถเปลี่ยนชื่อธีมกําหนดเองได้ {0}: {1}</value>
-  </data>
-  <data name="Menu.Behaviour.BackgroundUpdates.Title" xml:space="preserve">
-    <value>อัพเดทในพื้นหลัง</value>
-  </data>
-  <data name="Menu.Behaviour.BackgroundUpdates.Description" xml:space="preserve">
-    <value>อัพเดท Roblox ในพื้นหลังระหว่างรอ ไม่แนะนำสำหรับเครือข่ายที่ช้าเกินไป ต้องมีพื้นที่เก็บข้อมูลอย่างน้อย 3GB เพื่อให้ฟีเจอร์นี้ทำงานได้อย่างสมบูรณ์.</value>
   </data>
   <data name="CustomTheme.Templates.Blank.UIElements" xml:space="preserve">
     <value>นำองค์ประกอบของ UI ไว้ตรงนี้</value>
@@ -1388,5 +1407,116 @@ Bloxstrap จะติดตั้งไว้ที่ "{1}"</value>
   </data>
   <data name="CustomTheme.Editor.Errors.PreviewFailed" xml:space="preserve">
     <value>ไม่สามารถเเสดงตัวอย่างธีม: {0}</value>
+  </data>
+  <data name="Bootstrapper.ModificationsFailed.Title" xml:space="preserve">
+    <value>ไม่สามารถบันทึกการเปลี่ยนเเปลงได้</value>
+  </data>
+  <data name="Bootstrapper.ModificationsFailed.Message" xml:space="preserve">
+    <value>การแก้ไขทั้งหมดอาจไม่ปรากฏในการเปิดเกมรอบนี้</value>
+  </data>
+  <data name="Bootstrapper.ExtractionFailed.Title" xml:space="preserve">
+    <value>ไม่สามารถเเตกไฟล์ได้</value>
+  </data>
+  <data name="Bootstrapper.ExtractionFailed.Message" xml:space="preserve">
+    <value>คอนเทนต์บางอย่างอาจหายไป บังคับติดตั้ง Roblox ใหม่อีกครั้งในตั้งค่าเพื่อแก้ไขปัญหานี้</value>
+  </data>
+  <data name="Menu.Integrations.MultiInstanceLaunching.Title" xml:space="preserve">
+    <value>อนุญาตให้เปิดหลายหน้าต่าง</value>
+  </data>
+  <data name="Menu.Integrations.MultiInstanceLaunching.Description" xml:space="preserve">
+    <value>อนุญาตให้เปิดหน้าต่างเกม Roblox ได้มากกว่าหนึ่งพร้อมกัน</value>
+  </data>
+  <data name="Common.Rename" xml:space="preserve">
+    <value>เปลี่ยนชื่อ</value>
+  </data>
+  <data name="Common.CreateNew" xml:space="preserve">
+    <value>สร้างใหม่</value>
+  </data>
+  <data name="Menu.Behaviour.BackgroundUpdates.Title" xml:space="preserve">
+    <value>อัพเดทในพื้นหลัง</value>
+  </data>
+  <data name="Menu.Behaviour.BackgroundUpdates.Description" xml:space="preserve">
+    <value>อัพเดท Roblox ในพื้นหลังระหว่างรอ ไม่แนะนำสำหรับเครือข่ายที่ช้าเกินไป ต้องมีพื้นที่เก็บข้อมูลอย่างน้อย 3GB เพื่อให้ฟีเจอร์นี้ทำงานได้อย่างสมบูรณ์.</value>
+  </data>
+  <data name="Common.Import" xml:space="preserve">
+    <value>นำเข้า</value>
+  </data>
+  <data name="Common.Edit" xml:space="preserve">
+    <value>แก้ไข</value>
+  </data>
+  <data name="About.Title" xml:space="preserve">
+    <value>เกี่ยวกับ Teststrap</value>
+  </data>
+  <data name="Enums.CursorType.Inverted" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.Teststrap.Description" xml:space="preserve">
+    <value>กำหนดค่าเกี่ยวกับตัวเลือกที่เกี่ยวข้องกับพฤติกรรมของ Teststrap เอง</value>
+  </data>
+  <data name="Menu.Teststrap.Analytics.Title" xml:space="preserve">
+    <value>เปิดใช้งานการส่งข้อมูลวิเคราะห์</value>
+  </data>
+  <data name="Menu.Teststrap.Analytics.Description" xml:space="preserve">
+    <value>มันเป็นข้อมูลที่ไม่ระบุชื่อและไม่มีอะไรที่ไม่ดีแน่นอน สําหรับข้อมูลเกี่ยวกับสิ่งที่เรารวบรวมและเหตุผล โปรดดูที่ [นโยบายความเป็นส่วนตัวของเรา]({0})</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.EscapeMenuVersion.Title" xml:space="preserve">
+    <value>เวอร์ชั่นเมนู Escape ที่ต้องการ</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FPSLimit.Description" xml:space="preserve">
+    <value>ให้ตั้งเป็น 0 เพื่อค่าเริ่มต้น หากคุณต้องการใช้ตัวปลดล็อคเฟรมเรทของ Roblox</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FPSLimit.Title" xml:space="preserve">
+    <value>การจำกัด Framerate</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.HideGuis.Description" xml:space="preserve">
+    <value>สลับกับ[ปุ่มคีย์บอร์ด]({0}) จะสามารถใช้ได้ถ้าคุณอยู่ใน[กลุ่มของ Teststrap]({1})</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.HideGuis.Title" xml:space="preserve">
+    <value>เปิดใช้ความสามารถในการซ่อน GUIs</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.LightingTechnology.Description" xml:space="preserve">
+    <value>ตัวที่เลือกจะถูกบังคับใช้ในทุกเกม [ระวัง, อาจทำให้เกิดปัญหาเกี่ยวกับแสง]({0})</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.LightingTechnology.Title" xml:space="preserve">
+    <value>เทคโนโลยีแสงที่ต้องการ</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.DisablePostFX.Title" xml:space="preserve">
+    <value>ปิดการใช้งานเอฟเฟกต์หลังจากการประมวลผล</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FullscreenTitlebar.Title" xml:space="preserve">
+    <value>ปิดการใช้งานแถบหัวข้อในโหมดเต็มหน้าจอ</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.DisablePlayerShadows.Title" xml:space="preserve">
+    <value>ปิดซ่อนเงาของเพลเยอร์</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FontPadding.Title" xml:space="preserve">
+    <value>ขนาดของฟอร์น</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FontPadding.Description" xml:space="preserve">
+    <value>ค่าเริ่มต้นคือ 1 แก้ไขมันหากคุณใช้ฟอร์นที่กำหนดด้วยตัวเอง</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.DisableTerrainTextures.Title" xml:space="preserve">
+    <value>ปิดใช้การแสดงพื้นผิว</value>
+  </data>
+  <data name="Menu.About.Licenses.Apache" xml:space="preserve">
+    <value>Apache License 2.0</value>
+  </data>
+  <data name="Menu.GBSEditor.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.GBSEditor.Transparency.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.GBSEditor.Transparency.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.GBSEditor.Graphics.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu_Bloxstrap_Description1" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>

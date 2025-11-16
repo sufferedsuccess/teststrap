@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Bootstrapper.AutoUpdateFailed" xml:space="preserve">
-    <value>Bloxstrap kon niet automatisch updaten naar versie {0}. Update het alstublieft manueel door het te downloaden en openen via de website.</value>
+    <value>Teststrap kon niet automatisch updaten naar versie {0}. Update het alstublieft manueel door het te downloaden en openen via de website.</value>
   </data>
   <data name="Bootstrapper.ConfirmLaunch" xml:space="preserve">
     <value>Roblox is nu al open, een ander venster openen zal het sluiten. Weet je zeker dat je een nieuw venster wilt openen?</value>
@@ -127,13 +127,13 @@
     <value>Roblox kan op dit moment problemen hebben. Zie {0} voor meer informatie.</value>
   </data>
   <data name="Dialog.Connectivity.BadConnection" xml:space="preserve">
-    <value>Een verbinding kon niet worden gemaakt, waarschijnlijk door een zwakke internetverbinding of een firewall blok. Als je verbinding in orde is, controleer dan of je antivirus Bloxstrap niet blokkeert.</value>
+    <value>Een verbinding kon niet worden gemaakt, waarschijnlijk door een zwakke internetverbinding of een firewall blok. Als je verbinding in orde is, controleer dan of je antivirus Teststrap niet blokkeert.</value>
   </data>
   <data name="Bootstrapper.FirstRunUninstall" xml:space="preserve">
-    <value>Je moet eerst Bloxstrap installeren voordat je de installatie ongedaan maakt.</value>
+    <value>Je moet eerst Teststrap installeren voordat je de installatie ongedaan maakt.</value>
   </data>
   <data name="Bootstrapper.NotEnoughSpace" xml:space="preserve">
-    <value>Bloxstrap heeft niet genoeg schijfruimte om Roblox te downloaden en te installeren. Maak wat schijfruimte vrij en probeer het opnieuw.</value>
+    <value>Teststrap heeft niet genoeg schijfruimte om Roblox te downloaden en te installeren. Maak wat schijfruimte vrij en probeer het opnieuw.</value>
   </data>
   <data name="Bootstrapper.Status.ApplyingModifications" xml:space="preserve">
     <value>Roblox-aanpassingen toepassen...</value>
@@ -157,9 +157,6 @@
   <data name="Bootstrapper.Status.Upgrading" xml:space="preserve">
     <value>{product} aan het bijwerken...</value>
   </data>
-  <data name="Bootstrapper.Status.UpgradingBloxstrap" xml:space="preserve">
-    <value>De nieuwste Bloxstrap krijgen...</value>
-  </data>
   <data name="Bootstrapper.Status.WaitingOtherInstances" xml:space="preserve">
     <value>Wachten op andere instanties...</value>
   </data>
@@ -172,10 +169,10 @@
     <comment>Text for style previews that use text button that says "Cancel"</comment>
   </data>
   <data name="Bootstrapper.SuccessfullyUninstalled" xml:space="preserve">
-    <value>Bloxstrap is succesvol verwijderd</value>
+    <value>Teststrap is succesvol verwijderd</value>
   </data>
   <data name="Bootstrapper.Uninstall.RobloxRunning" xml:space="preserve">
-    <value>Roblox is momenteel actief, maar moet worden gesloten voordat je Bloxstrap kunt deïnstalleren. Wil je Roblox nu afsluiten?</value>
+    <value>Roblox is momenteel actief, maar moet worden gesloten voordat je Teststrap kunt deïnstalleren. Wil je Roblox nu afsluiten?</value>
   </data>
   <data name="Bootstrapper.WMFNotFound" xml:space="preserve">
     <value>Roblox vereist het gebruik van Windows Media Foundation-componenten. Het lijkt erop dat deze ontbreken, waarschijnlijk omdat je een N editie van Windows gebruikt. Installeer ze eerst en start dan Roblox.</value>
@@ -279,14 +276,14 @@ Klik voor meer informatie</value>
     <value>Verbindingsfout</value>
   </data>
   <data name="Dialog.Connectivity.UnableToConnect" xml:space="preserve">
-    <value>Bloxstrap kan niet verbinden met {0}</value>
+    <value>Teststrap kan niet verbinden met {0}</value>
     <comment>{0} is the name of a service (i.e. Roblox, GitHub)</comment>
   </data>
   <data name="Dialog.Exception.CopyLogContents" xml:space="preserve">
     <value>Inhoud van logboek kopiëren</value>
   </data>
   <data name="Dialog.Exception.Info.1" xml:space="preserve">
-    <value>Er is een uitzondering opgetreden tijdens het uitvoeren van Bloxstrap</value>
+    <value>Er is een uitzondering opgetreden tijdens het uitvoeren van Teststrap</value>
   </data>
   <data name="Dialog.Exception.Info.2" xml:space="preserve">
     <value>Controleer de [Bloxstrap Wiki]({0}) om eerst te zien of dit probleem al is verholpen.
@@ -294,7 +291,7 @@ Klik voor meer informatie</value>
 Als dat niet het geval is, rapporteer deze uitzondering dan alstublieft door een [GitHub-issue]({1}) aan te maken, samen met een kopie van het logbestand dat is aangemaakt.</value>
   </data>
   <data name="Dialog.Exception.Title" xml:space="preserve">
-    <value>Bloxstrap-Uitzondering</value>
+    <value>Teststrap-Uitzondering</value>
   </data>
   <data name="Common.Custom" xml:space="preserve">
     <value>Aangepast</value>
@@ -309,10 +306,10 @@ Als dat niet het geval is, rapporteer deze uitzondering dan alstublieft door een
     <value>Nep-Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klassiek)</value>
+    <value>Teststrap (Klassiek)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Doorzichtig)</value>
+    <value>Teststrap (Doorzichtig)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008-2011)</value>
@@ -356,6 +353,18 @@ Als dat niet het geval is, rapporteer deze uitzondering dan alstublieft door een
   <data name="Enums.FlagPresets.InGameMenuVersion.V4" xml:space="preserve">
     <value>2023 (V4)</value>
   </data>
+  <data name="Enums.FlagPresets.LightingMode.Default" xml:space="preserve">
+    <value>Gekozen door spel</value>
+  </data>
+  <data name="Enums.FlagPresets.LightingMode.Future" xml:space="preserve">
+    <value>Toekomst (Fase 3)</value>
+  </data>
+  <data name="Enums.FlagPresets.LightingMode.ShadowMap" xml:space="preserve">
+    <value>Schaduwkaart (Fase 2)</value>
+  </data>
+  <data name="Enums.FlagPresets.LightingMode.Voxel" xml:space="preserve">
+    <value>Voxel (Fase 1)</value>
+  </data>
   <data name="Enums.FlagPresets.RenderingMode.D3D10" xml:space="preserve">
     <value>Direct3D 10</value>
   </data>
@@ -378,10 +387,10 @@ Als dat niet het geval is, rapporteer deze uitzondering dan alstublieft door een
     <value>Licht</value>
   </data>
   <data name="InstallChecker.Updated" xml:space="preserve">
-    <value>Bloxstrap is bijgewerkt naar v{0}</value>
+    <value>Teststrap is bijgewerkt naar v{0}</value>
   </data>
   <data name="InstallChecker.VersionDifferentThanInstalled" xml:space="preserve">
-    <value>De versie van Bloxstrap die je hebt gelanceerd is anders dan de versie die je momenteel hebt geïnstalleerd.
+    <value>De versie van Teststrap die je hebt gelanceerd is anders dan de versie die je momenteel hebt geïnstalleerd.
 Wil je je huidige geïnstalleerde versie bijwerken?</value>
   </data>
   <data name="Menu.About.Contributors" xml:space="preserve">
@@ -391,7 +400,7 @@ Wil je je huidige geïnstalleerde versie bijwerken?</value>
     <value>Code</value>
   </data>
   <data name="Menu.About.Contributors.Description" xml:space="preserve">
-    <value>Dit zijn de mensen die een opmerkelijke bijdrage hebben geleverd aan Bloxstrap en het hebben gemaakt tot wat het is.</value>
+    <value>Dit zijn de mensen die een opmerkelijke bijdrage hebben geleverd aan Teststrap en het hebben gemaakt tot wat het is.</value>
   </data>
   <data name="Menu.About.Contributors.FeatureIdeas" xml:space="preserve">
     <value>Functie-ideeën</value>
@@ -437,7 +446,7 @@ Wil je je huidige geïnstalleerde versie bijwerken?</value>
     <value>Houd er rekening mee dat niet al je wijzigingen direct van toepassing zijn totdat je alle huidige open Roblox-instanties sluit.</value>
   </data>
   <data name="Menu.AlreadyRunning.Title" xml:space="preserve">
-    <value>Bloxstrap wordt al uitgevoerd</value>
+    <value>Teststrap wordt al uitgevoerd</value>
   </data>
   <data name="Menu.Appearance.Bootstrapper.Description" xml:space="preserve">
     <value>Je kunt het er anders, retro of zelfs net als Roblox laten uitzien.</value>
@@ -464,7 +473,7 @@ Wil je je huidige geïnstalleerde versie bijwerken?</value>
     <value>Titel</value>
   </data>
   <data name="Menu.Appearance.Description" xml:space="preserve">
-    <value>Configureer hoe Bloxstrap eruit moet zien.</value>
+    <value>Configureer hoe Teststrap eruit moet zien.</value>
   </data>
   <data name="Menu.Appearance.Global.Theme.Title" xml:space="preserve">
     <value>Globaal thema</value>
@@ -488,10 +497,10 @@ Wil je je huidige geïnstalleerde versie bijwerken?</value>
     <value>Uiterlijk</value>
   </data>
   <data name="Menu.Behaviour.AutoUpdate.Description" xml:space="preserve">
-    <value>Bloxstrap zal zichzelf automatisch controleren en bijwerken bij het starten van Roblox.</value>
+    <value>Teststrap zal zichzelf automatisch controleren en bijwerken bij het starten van Roblox.</value>
   </data>
   <data name="Menu.Behaviour.AutoUpdate.Title" xml:space="preserve">
-    <value>Bloxstrap automatisch bijwerken</value>
+    <value>Teststrap automatisch bijwerken</value>
   </data>
   <data name="Menu.Behaviour.ConfirmLaunches.Description" xml:space="preserve">
     <value>Voorkom dat je bestaande spel niet wordt afgesloten als je per ongeluk een ander spel start.</value>
@@ -500,7 +509,7 @@ Wil je je huidige geïnstalleerde versie bijwerken?</value>
     <value>Vraag om bevestiging wanneer een andere Roblox instantie wordt geopend</value>
   </data>
   <data name="Menu.Behaviour.Description" xml:space="preserve">
-    <value>Kies wat Bloxstrap moet doen bij het opstarten van Roblox.</value>
+    <value>Kies wat Teststrap moet doen bij het opstarten van Roblox.</value>
   </data>
   <data name="Menu.Behaviour.ForceRobloxReinstall.Description" xml:space="preserve">
     <value>Roblox wordt opnieuw geïnstalleerd bij de volgende lancering.</value>
@@ -573,12 +582,30 @@ Weet je zeker dat je door wilt gaan?</value>
   <data name="Menu.FastFlagEditor.Title" xml:space="preserve">
     <value>Fast Flag-editor</value>
   </data>
+  <data name="Menu.FastFlagEditor.Warning.Back" xml:space="preserve">
+    <value>Ga terug</value>
+  </data>
+  <data name="Menu.FastFlagEditor.Warning.Continue" xml:space="preserve">
+    <value>Ik weet wat ik doe</value>
+  </data>
+  <data name="Menu.FastFlagEditor.Warning.Header" xml:space="preserve">
+    <value>Weet je wat je aan het doen bent?</value>
+  </data>
+  <data name="Menu.FastFlagEditor.Warning.Text" xml:space="preserve">
+    <value>Fast Flags zijn extreem krachtig, omdat ze bedoeld zijn om alleen gebruikt te worden door Roblox engineers. Hoewel ze erg nuttig kunnen zijn, kan het handmatig configureren ervan ernstige problemen veroorzaken met de stabiliteit en functionaliteit. Gebruik de editor NIET als je niet zeker weet wat je doet.
+
+Gebruik dit NIET om grote "vlaggenlijsten" te importeren die gemaakt zijn door andere mensen die beloven de prestaties te verbeteren of iets dergelijks. Ze zijn onderhevig aan de eerder genoemde problemen en ze zullen problemen voor je veroorzaken omdat je niet volledig bewust bent van wat ze veranderen. Als je dat van plan was, ga dan TERUG.</value>
+  </data>
   <data name="Menu.FastFlags.Description" xml:space="preserve">
     <value>Bepaal hoe specifieke parameters en functies van de Roblox-engine worden geconfigureerd.</value>
   </data>
   <data name="Menu.FastFlags.Editor.Description" xml:space="preserve">
     <value>Beheer je eigen Fast Flags. Voorzichtig gebruiken.</value>
     <comment>Title is Menu.FastFlagEditor.Title</comment>
+  </data>
+  <data name="Menu.FastFlags.Help.Description" xml:space="preserve">
+    <value>Leer meer over Fast Flags, wat deze presets doen en hoe je ze kunt gebruiken.</value>
+    <comment>Title is Common.Help</comment>
   </data>
   <data name="Menu.FastFlags.Presets.D3DExclusiveFullscreenInfo" xml:space="preserve">
     <value>Direct3D [Exclusief volledig scherm]({0}) Alt + Enter gebruiken is standaard ingeschakeld.</value>
@@ -602,10 +629,10 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Pictogrammenbestanden</value>
   </data>
   <data name="Menu.InstallLocation.CantInstall" xml:space="preserve">
-    <value>Bloxstrap kan hier niet geïnstalleerd worden. Kies een andere locatie of gebruik de standaardlocatie door op de resetknop te klikken.</value>
+    <value>Teststrap kan hier niet geïnstalleerd worden. Kies een andere locatie of gebruik de standaardlocatie door op de resetknop te klikken.</value>
   </data>
   <data name="Menu.InstallLocation.NotEmpty" xml:space="preserve">
-    <value>De map waarin je Bloxstrap wilt installeren bestaat al en is NIET leeg. Het wordt sterk aangeraden om Bloxstrap in zijn eigen onafhankelijke map te installeren.
+    <value>De map waarin je Teststrap wilt installeren bestaat al en is NIET leeg. Het wordt sterk aangeraden om Teststrap in zijn eigen onafhankelijke map te installeren.
 
 De volgende locatie wordt aanbevolen:
 {0}
@@ -618,7 +645,7 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>Je moet een installatielocatie instellen</value>
   </data>
   <data name="Menu.InstallLocation.NoWritePerms" xml:space="preserve">
-    <value>Bloxstrap heeft geen schrijftoegang tot de installatielocatie die je hebt geselecteerd. Kies een andere locatie.</value>
+    <value>Teststrap heeft geen schrijftoegang tot de installatielocatie die je hebt geselecteerd. Kies een andere locatie.</value>
   </data>
   <data name="Menu.Integrations.ActivityTracking" xml:space="preserve">
     <value>Activiteit bijhouden</value>
@@ -669,7 +696,7 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>Niet afsluiten naar bureaublad-app</value>
   </data>
   <data name="Menu.Integrations.EnableActivityTracking.Description" xml:space="preserve">
-    <value>Staat toe dat Bloxstrap kan detecteren welk Roblox-spel je speelt. Bepaalde functies kunnen dit vereisen.</value>
+    <value>Staat toe dat Teststrap kan detecteren welk Roblox-spel je speelt. Bepaalde functies kunnen dit vereisen.</value>
   </data>
   <data name="Menu.Integrations.EnableActivityTracking.Title" xml:space="preserve">
     <value>Activiteitentracking inschakelen</value>
@@ -701,6 +728,9 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
   </data>
   <data name="Menu.Mods.Misc.CustomFont.Choose" xml:space="preserve">
     <value>Kies een lettertype...</value>
+  </data>
+  <data name="Menu.Mods.Misc.CustomFont.Description" xml:space="preserve">
+    <value>Het lettertype kan worden aangepast in de Engine Settings-tab.</value>
   </data>
   <data name="Menu.Mods.Misc.CustomFont.Invalid" xml:space="preserve">
     <value>Het bestand dat je hebt gekozen lijkt geen geldig lettertypebestand te zijn.</value>
@@ -757,7 +787,7 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>Instellingen opgeslagen!</value>
   </data>
   <data name="Menu.Title" xml:space="preserve">
-    <value>Bloxstrap Instellingen</value>
+    <value>Teststrap Instellingen</value>
   </data>
   <data name="Dialog.LanguageSelector.Header" xml:space="preserve">
     <value>Kies voorkeurstaal</value>
@@ -771,20 +801,32 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
   <data name="Menu.Appearance.Language.Description" xml:space="preserve">
     <value>Een herlancering is nodig om verandering in effect te brengen.</value>
   </data>
+  <data name="Menu.Behaviour.ForceRobloxLanguage.Title" xml:space="preserve">
+    <value>Sta gebruik van niet ondersteunde Roblox talen toe</value>
+  </data>
+  <data name="Menu.Behaviour.ForceRobloxLanguage.Description" xml:space="preserve">
+    <value>Alleen van toepassing op spellen die vanaf de Roblox website worden gestart.</value>
+  </data>
   <data name="Enums.FlagPresets.InGameMenuVersion.V4Chrome" xml:space="preserve">
     <value>2023 (V4 + Nieuw gebruikersinterface)</value>
   </data>
   <data name="Menu.FastFlags.Presets.Categories.Rendering" xml:space="preserve">
     <value>Rendering en grafische weergave</value>
   </data>
+  <data name="Menu.FastFlags.Presets.Categories.UserInterface" xml:space="preserve">
+    <value>Gebruikersinterface en lay-out</value>
+  </data>
   <data name="Menu.FastFlags.ManagerEnabled.Title" xml:space="preserve">
-    <value>Sta Bloxstrap toe om Fast Flags te beheren</value>
+    <value>Sta Teststrap toe om Fast Flags te beheren</value>
   </data>
   <data name="Menu.FastFlags.ManagerEnabled.Description" xml:space="preserve">
     <value>Als je dit uitzet, zullen alle configuraties hier niet worden toegepast op Roblox.</value>
   </data>
   <data name="Menu.FastFlags.Presets.MSAA.Title" xml:space="preserve">
     <value>Kwaliteit van anti-aliasing (MSAA)</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FullscreenTitlebar.Description" xml:space="preserve">
+    <value>Voorkomt dat het verschijnt wanneer je je muis naar de bovenkant van je scherm beweegt.</value>
   </data>
   <data name="Menu.FastFlags.Presets.TextureQuality.Title" xml:space="preserve">
     <value>Textuurkwaliteit</value>
@@ -802,7 +844,7 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>Level 3 (Hoogste)</value>
   </data>
   <data name="Dialog.Connectivity.UnableToDownload" xml:space="preserve">
-    <value>Bloxstrap kan Roblox niet downloaden</value>
+    <value>Teststrap kan Roblox niet downloaden</value>
   </data>
   <data name="Dialog.Connectivity.UnableToDownloadReason" xml:space="preserve">
     <value>Op dit moment kan Roblox niet worden gedownload. Lees alsjeblieft de volgende help-pagina voor meer informatie: {0}</value>
@@ -823,7 +865,7 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>De invoer voor '{0}' is ongeldig, omdat de waarde een getal moet zijn</value>
   </data>
   <data name="Logger.NoWriteMode" xml:space="preserve">
-    <value>Er wordt geen logbestand aangemaakt voor deze start omdat Bloxstrap niet kan schrijven naar de map op '{0}'</value>
+    <value>Er wordt geen logbestand aangemaakt voor deze start omdat Teststrap niet kan schrijven naar de map op '{0}'</value>
   </data>
   <data name="Common.Default" xml:space="preserve">
     <value>Standaard</value>
@@ -838,7 +880,7 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>De invoer voor '{0}' is niet geldig omdat de plaatsfilter niet correct is opgemaakt.</value>
   </data>
   <data name="Installer.Title" xml:space="preserve">
-    <value>Bloxstrap Installer</value>
+    <value>Teststrap Installer</value>
   </data>
   <data name="Installer.Welcome.Title" xml:space="preserve">
     <value>Welkom</value>
@@ -857,18 +899,18 @@ Als je 'Nee' selecteert, wordt deze waarschuwing genegeerd en wordt de installat
     <value>Volgende</value>
   </data>
   <data name="Installer.Welcome.MainText" xml:space="preserve">
-    <value>Bedankt voor het downloaden van Bloxstrap.
+    <value>Bedankt voor het downloaden van Teststrap.
 
-De enigste officiële websites om Bloxstrap te downloaden zijn {0} en {1}, verifieer dat u ze van een officiële bron hebt.
+De enigste officiële websites om Teststrap te downloaden zijn {0} en {1}, verifieer dat u ze van een officiële bron hebt.
 
-De installatie proces zal snel en eenvoudig zijn, dus u kunt na de installatie elke Bloxstrap instelling veranderen.</value>
+De installatie proces zal snel en eenvoudig zijn, dus u kunt na de installatie elke Teststrap instelling veranderen.</value>
     <comment>{0} and {1} are URLs</comment>
   </data>
   <data name="Installer.Welcome.NextToContinue" xml:space="preserve">
     <value>Klik alstublieft op 'Volgende' om door te gaan.</value>
   </data>
   <data name="Installer.Welcome.UpdateNotice" xml:space="preserve">
-    <value>U probeert de versie {0} van Bloxstrap te installeren, terwijl de nieuwste versie {1} is. Wilt u deze downloaden?</value>
+    <value>U probeert de versie {0} van Teststrap te installeren, terwijl de nieuwste versie {1} is. Wilt u deze downloaden?</value>
   </data>
   <data name="Installer.Install.Location.Title" xml:space="preserve">
     <value>Kies waar te installeren</value>
@@ -889,16 +931,16 @@ De installatie proces zal snel en eenvoudig zijn, dus u kunt na de installatie e
     <value>Start Menu icoon</value>
   </data>
   <data name="Installer.Completion.Text" xml:space="preserve">
-    <value>Bloxstrap is met succes geïnstalleerd.
+    <value>Teststrap is met succes geïnstalleerd.
 
-Roblox is nog niet geïnstalleerd, dat zal gebeuren wanneer je Bloxstrap voor het eerst gebruikt. Voor dat je dit doet, wil je misschien Bloxstrap's instellingen veranderen.
+Roblox is nog niet geïnstalleerd, dat zal gebeuren wanneer je Teststrap voor het eerst gebruikt. Voor dat je dit doet, wil je misschien Teststrap's instellingen veranderen.
 
-Vermijd ook het gebruik van de "Roblox Player" snelkoppeling om Roblox te spelen, omdat Bloxstrap dan niet met Roblox lanceert. Als je Bloxstrap niet ziet wanneer je Roblox lanceert vanaf de website, start dan eenmaal Roblox met Bloxstrap op van je desktop om het op te lossen.
+Vermijd ook het gebruik van de "Roblox Player" snelkoppeling om Roblox te spelen, omdat Teststrap dan niet met Roblox lanceert. Als je Teststrap niet ziet wanneer je Roblox lanceert vanaf de website, start dan eenmaal Roblox met Teststrap op van je desktop om het op te lossen.
 
 Wat wilt u doen?</value>
   </data>
   <data name="Installer.Completion.Settings.Title" xml:space="preserve">
-    <value>Bloxstrap instellingen veranderen</value>
+    <value>Teststrap instellingen veranderen</value>
   </data>
   <data name="Installer.Completion.Settings.Description" xml:space="preserve">
     <value>Pas alle functies aan die het heeft aan te bieden</value>
@@ -910,22 +952,22 @@ Wat wilt u doen?</value>
     <value>Opent de desktop app zodra alles gedaan is</value>
   </data>
   <data name="Uninstaller.Title" xml:space="preserve">
-    <value>Verwijder Bloxstrap</value>
+    <value>Verwijder Teststrap</value>
   </data>
   <data name="Uninstaller.Text" xml:space="preserve">
-    <value>De-installeren zal Bloxstrap van uw systeem verwijderen en automatisch de standaard Roblox launcher opnieuw configureren als het nog steeds geïnstalleerd is.
+    <value>De-installeren zal Teststrap van uw systeem verwijderen en automatisch de standaard Roblox launcher opnieuw configureren als het nog steeds geïnstalleerd is.
 
 Als u eerst problemen ondervindt met Roblox en probeert de de-installeren of opnieuw te installeren, lees dan [deze helppagina] ({0}).
 
-Het de-installatieproces kan zichzelf mogelijk niet volledig opschonen, dus u moet misschien handmatig de overgebleven bestanden opschonen waar Bloxstrap is geïnstalleerd.
+Het de-installatieproces kan zichzelf mogelijk niet volledig opschonen, dus u moet misschien handmatig de overgebleven bestanden opschonen waar Teststrap is geïnstalleerd.
 
-Bloxstrap is geïnstalleerd op "{1}".</value>
+Teststrap is geïnstalleerd op "{1}".</value>
   </data>
   <data name="Uninstaller.KeepData.Label" xml:space="preserve">
     <value>Mijn instellingen en modificaties behouden</value>
   </data>
   <data name="Uninstaller.KeepData.Description" xml:space="preserve">
-    <value>Ze zullen bewaard worden waar Bloxstrap geïnstalleerd was, en zal automatisch herstelt worden op een herinstallatie.</value>
+    <value>Ze zullen bewaard worden waar Teststrap geïnstalleerd was, en zal automatisch herstelt worden op een herinstallatie.</value>
   </data>
   <data name="Uninstaller.Uninstall" xml:space="preserve">
     <value>Verwijderen</value>
@@ -946,19 +988,19 @@ Bloxstrap is geïnstalleerd op "{1}".</value>
     <value>De WebView2 runtime is momenteel niet geïnstalleerd. Sommige Roblox functies werken zonder deze niet goed, zoals de desktop app. Wilt u deze nu downloaden?</value>
   </data>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
-    <value>Bloxstrap kon geen snelkoppelingen maken voor het bureaublad en Start menu. Probeer ze later te maken via de instellingen.</value>
+    <value>Teststrap kon geen snelkoppelingen maken voor het bureaublad en Start menu. Probeer ze later te maken via de instellingen.</value>
   </data>
   <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
     <value>Bekijk de [Bloxstrap Wiki]({0}) eerst om te zien of dit probleem al is opgelost met een oplossing.
 
-Als dit niet het geval is, rapporteer dit probleem dan aan de beheerders van deze fork. Meld dit NIET aan de GitHub van Bloxstrap, omdat dit niet een officiële versie is.</value>
+Als dit niet het geval is, rapporteer dit probleem dan aan de beheerders van deze fork. Meld dit NIET aan de GitHub van Teststrap, omdat dit niet een officiële versie is.</value>
     <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
   </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Dit zijn algemene snelkoppelingen die een opstart menu met meerdere keuzes opleveren. Snelkoppelingen voor specifieke functies kunnen later worden aangemaakt in de instellingen.</value>
   </data>
   <data name="Menu.Shortcuts.Description" xml:space="preserve">
-    <value>Stel in hoe Bloxstrap gemakkelijk gestart kan worden.</value>
+    <value>Stel in hoe Teststrap gemakkelijk gestart kan worden.</value>
   </data>
   <data name="Menu.Shortcuts.General.Title" xml:space="preserve">
     <value>Algemeen</value>
@@ -987,9 +1029,6 @@ Als dit niet het geval is, rapporteer dit probleem dan aan de beheerders van dez
   <data name="Dialog.AlreadyRunning.Uninstaller" xml:space="preserve">
     <value>Wacht alstublieft tot het klaar is met verwijderen.</value>
   </data>
-  <data name="About.Title" xml:space="preserve">
-    <value>Over Bloxstrap</value>
-  </data>
   <data name="About.Licenses.Title" xml:space="preserve">
     <value>Licenties</value>
     <comment>Referring to code licenses; see https://opensource.org/licenses for example</comment>
@@ -1001,11 +1040,19 @@ Als dit niet het geval is, rapporteer dit probleem dan aan de beheerders van dez
     <value>U hebt wijzigingen dat niet opgeslagen zijn. Bent u zeker dat u wilt afsluiten zonder op te slaan?</value>
   </data>
   <data name="InstallChecker.VersionLessThanInstalled" xml:space="preserve">
-    <value>De versie van Bloxstrap die u hebt geopend is ouder dan de versie die je nu hebt geïnstalleerd.
-Er kunnen problemen zijn, en uw instellingen kunnen veranderd worden. Het is aanbevolen om Bloxstrap te herinstalleren. Bent u zeker dat u wilt doorgaan?</value>
+    <value>De versie van Teststrap die u hebt geopend is ouder dan de versie die je nu hebt geïnstalleerd.
+Er kunnen problemen zijn, en uw instellingen kunnen veranderd worden. Het is aanbevolen om Teststrap te herinstalleren. Bent u zeker dat u wilt doorgaan?</value>
   </data>
   <data name="Dialog.PlayerError.FailedLaunch" xml:space="preserve">
     <value>Roblox kon niet starten.</value>
+  </data>
+  <data name="Dialog.PlayerError.Crash" xml:space="preserve">
+    <value>Roblox is gecrasht.</value>
+  </data>
+  <data name="Dialog.PlayerError.HelpInformation" xml:space="preserve">
+    <value>Voor informatie over hoe dit kan gebeuren en hoe het opgelost kan worden, lees je alstublieft [dit hulpartikel]({0}).
+
+Controleer of Roblox werkt met [de originele launcher]({1}). Als dit niet het geval is, is het geen Teststrap-probleem. Verwijs dan naar het hulpartikel.</value>
   </data>
   <data name="Common.NetworkError" xml:space="preserve">
     <value>Kon gegevens niet laden door een netwerkfout.</value>
@@ -1017,7 +1064,7 @@ Er kunnen problemen zijn, en uw instellingen kunnen veranderd worden. Het is aan
     <value>Supporters</value>
   </data>
   <data name="About.Supporters.Description" xml:space="preserve">
-    <value>Dit zijn de mensen die Bloxstrap hebben ondersteund via Ko-fi. Een enorme dank aan iedereen hier!
+    <value>Dit zijn de mensen die Teststrap hebben ondersteund via Ko-fi. Een enorme dank aan iedereen hier!
 Elke persoon hier is gerangschikt op basis van hun totale bijdrage.</value>
   </data>
   <data name="JsonManager.SettingsLoadFailed" xml:space="preserve">
@@ -1048,12 +1095,12 @@ Elke persoon hier is gerangschikt op basis van hun totale bijdrage.</value>
     <value>Voor deze launch zal Roblox niet gecontroleerd worden op upgrades, en wijzigingen aan mods zullen niet toegepast worden.</value>
   </data>
   <data name="Dialog.Connectivity.RobloxUpgradeNeeded" xml:space="preserve">
-    <value>Omdat Roblox geïnstalleerd of geüpdate moet worden, Bloxstrap kan niet doorgaan.</value>
+    <value>Omdat Roblox geïnstalleerd of geüpdate moet worden, Teststrap kan niet doorgaan.</value>
   </data>
   <data name="Installer.Install.CannotOverwrite" xml:space="preserve">
-    <value>Bloxstrap is geïnstalleerd op deze locatie en is nog steeds aanwezig, maar het installatieprogramma kan het oude uitvoerbare niet overschrijven. 
+    <value>Teststrap is geïnstalleerd op deze locatie en is nog steeds aanwezig, maar het installatieprogramma kan het oude uitvoerbare niet overschrijven. 
 
-Verwijder handmatig Bloxstrap.EXE van de installatielocatie of probeer je systeem opnieuw op te starten, en probeer daarna opnieuw te installeren.</value>
+Verwijder handmatig Teststrap.EXE van de installatielocatie of probeer je systeem opnieuw op te starten, en probeer daarna opnieuw te installeren.</value>
   </data>
   <data name="Common.NotAvailable" xml:space="preserve">
     <value>Niet beschikbaar</value>
@@ -1065,7 +1112,7 @@ Verwijder handmatig Bloxstrap.EXE van de installatielocatie of probeer je systee
     <value>Configureer applicatie parameters zoals DPI scaling behaviour en [fullscreen optimizations]({0}).</value>
   </data>
   <data name="Common.RobloxNotInstalled" xml:space="preserve">
-    <value>Roblox is nog niet geïnstalleerd. Start Roblox minstens eenmaal op via Bloxstrap voordat u probeert deze optie te gebruiken.</value>
+    <value>Roblox is nog niet geïnstalleerd. Start Roblox minstens eenmaal op via Teststrap voordat u probeert deze optie te gebruiken.</value>
   </data>
   <data name="Installer.ShouldCancel" xml:space="preserve">
     <value>Bent u zeker dat u de installatie wilt stoppen?</value>
@@ -1083,25 +1130,16 @@ Verwijder handmatig Bloxstrap.EXE van de installatielocatie of probeer je systee
     <value>Extract Roblox iconen naar folder</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Staat u toe om Bloxstrap's collectie van Roblox iconen te gebruiken voor snelkoppelingen. [Zie hoe.]({0})</value>
+    <value>Staat u toe om Teststrap's collectie van Roblox iconen te gebruiken voor snelkoppelingen. [Zie hoe.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
-    <value>Bloxstrap kan niet naar het Windows-register schrijven. Een antivirus programma kan mogelijk storen en problemen veroorzaken. Controleer of er niet iets is dat de Bloxstrap werking zou beperken.</value>
+    <value>Teststrap kan niet naar het Windows-register schrijven. Een antivirus programma kan mogelijk storen en problemen veroorzaken. Controleer of er niet iets is dat de Teststrap werking zou beperken.</value>
   </data>
   <data name="About.Supporters.Monthly" xml:space="preserve">
     <value>Maandelijks</value>
   </data>
   <data name="About.Supporters.OneOff" xml:space="preserve">
     <value>Eenmalig</value>
-  </data>
-  <data name="Menu.Bloxstrap.Description" xml:space="preserve">
-    <value>Configureer opties gerelateerd aan het gedrag van Bloxstrap zelf.</value>
-  </data>
-  <data name="Menu.Bloxstrap.Analytics.Title" xml:space="preserve">
-    <value>Het verzenden van analytics inschakelen</value>
-  </data>
-  <data name="Menu.Bloxstrap.Analytics.Description" xml:space="preserve">
-    <value>Het is anoniem en niets slecht, beloofd. Voor inzicht in wat we verzamelen en waarom, zie ons ({0}).</value>
   </data>
   <data name="Common.Analytics" xml:space="preserve">
     <value>Statistieken</value>
@@ -1124,7 +1162,7 @@ Wanneer ingeschakeld, zal Roblox automatisch starten na het sluiten van de inste
 Wilt u de testmodus inschakelen?</value>
   </data>
   <data name="About.Translators.Description" xml:space="preserve">
-    <value>Alle vertalingen van Bloxstrap zijn gecrowdsourcet via [Crowdin]({0}). Iedereen die hier op de lijst staat, zijn mensen die zich ruimhartig hebben ingezet voor het lokaliseren van Bloxstrap. Een grote dank aan iedereen hier!</value>
+    <value>Alle vertalingen van Teststrap zijn gecrowdsourcet via [Crowdin]({0}). Iedereen die hier op de lijst staat, zijn mensen die zich ruimhartig hebben ingezet voor het lokaliseren van Teststrap. Een grote dank aan iedereen hier!</value>
   </data>
   <data name="Common.Navigation.Install" xml:space="preserve">
     <value>Installeer</value>
@@ -1144,7 +1182,7 @@ Wilt u de testmodus inschakelen?</value>
     <value>Aangepast</value>
   </data>
   <data name="Bootstrapper.FilesInUse" xml:space="preserve">
-    <value>Bloxstrap heeft geprobeerd Roblox bij te werken, maar kan dit niet omdat de bestanden van Roblox nog in gebruik zijn.
+    <value>Teststrap heeft geprobeerd Roblox bij te werken, maar kan dit niet omdat de bestanden van Roblox nog in gebruik zijn.
 
 Sluit alstublieft alle applicaties die mogelijk de bestanden van Roblox gebruiken en start opnieuw.</value>
     <comment>This is *not* for when Roblox is still running when trying to upgrade. This applies to files being open (i.e. image assets)</comment>
@@ -1155,39 +1193,13 @@ Sluit alstublieft alle applicaties die mogelijk de bestanden van Roblox gebruike
   </data>
   <data name="Common.Export" xml:space="preserve">
     <value>Exporteer</value>
-    <comment>Currently used under the "Bloxstrap" settings tab for the button to export diagnostic data</comment>
-  </data>
-  <data name="Menu.Bloxstrap.ExportData.Title" xml:space="preserve">
-    <value>Exporteer diagnostische gegevens</value>
-  </data>
-  <data name="Menu.Bloxstrap.ExportData.Description" xml:space="preserve">
-    <value>Verzamel informatie die online kan worden geüpload om een probleem op te lossen dat je hebt.</value>
-  </data>
-  <data name="Menu.Bloxstrap.ExportData.ExportConfig" xml:space="preserve">
-    <value>Bloxstrap configuratie</value>
-    <comment>Label that appears next to a checkbox</comment>
-  </data>
-  <data name="Menu.Bloxstrap.ExportData.ExportLogs" xml:space="preserve">
-    <value>Alle Bloxstrap logs</value>
-    <comment>Label that appears next to a checkbox</comment>
+    <comment>Currently used under the "Teststrap" settings tab for the button to export diagnostic data</comment>
   </data>
   <data name="App.OSDeprecation.Win7_81" xml:space="preserve">
     <value>Roblox ondersteunt niet meer Windows 7 of 8.1. Voor Roblox te blijven spelen, upgrade naar Windows 10 of nieuwer.</value>
   </data>
-  <data name="Bootstrapper.ExtractionFailed.Title" xml:space="preserve">
-    <value>Kon niet alle bestanden uitpakken</value>
-  </data>
-  <data name="Bootstrapper.ExtractionFailed.Message" xml:space="preserve">
-    <value>Er kan inhoud ontbreken. Forceer een Roblox herinstallatie in de instellingen om dit op te lossen.</value>
-  </data>
-  <data name="Bootstrapper.ModificationsFailed.Title" xml:space="preserve">
-    <value>Toepassen van wijzigingen mislukt</value>
-  </data>
-  <data name="Bootstrapper.ModificationsFailed.Message" xml:space="preserve">
-    <value>Niet alle wijzigingen zullen aanwezig zijn in de huidige lancering.</value>
-  </data>
-  <data name="Menu.About.Licenses.Apache" xml:space="preserve">
-    <value>Apache Licentie 2.0</value>
+  <data name="Bootstrapper.Status.UpgradingBloxstrap" xml:space="preserve">
+    <value>De nieuwste Teststrap krijgen...</value>
   </data>
   <data name="Enums.CustomThemeTemplate.Blank" xml:space="preserve">
     <value>Blanco</value>
@@ -1310,12 +1322,6 @@ Sluit alstublieft alle applicaties die mogelijk de bestanden van Roblox gebruike
   <data name="CustomTheme.Editor.OpenThemeDirectory" xml:space="preserve">
     <value>Open themamap</value>
   </data>
-  <data name="Common.CreateNew" xml:space="preserve">
-    <value>Maak nieuw</value>
-  </data>
-  <data name="Common.Import" xml:space="preserve">
-    <value>Importeer</value>
-  </data>
   <data name="CustomTheme.Add.Title" xml:space="preserve">
     <value>Aangepaste thema toevoegen</value>
   </data>
@@ -1357,23 +1363,11 @@ Word ingesteld op de standaard {1}.</value>
   <data name="Menu.Appearance.CustomThemes.NoneSelected" xml:space="preserve">
     <value>Geen aangepaste thema geselecteerd.</value>
   </data>
-  <data name="Common.Rename" xml:space="preserve">
-    <value>Hernoemen</value>
-  </data>
-  <data name="Common.Edit" xml:space="preserve">
-    <value>Aanpassen</value>
-  </data>
   <data name="Menu.Appearance.CustomThemes.DeleteFailed" xml:space="preserve">
     <value>Aangepast thema verwijderen mislukt {0}: {1}</value>
   </data>
   <data name="Menu.Appearance.CustomThemes.RenameFailed" xml:space="preserve">
     <value>Hernoemen van aangepast thema {0} mislukt: {1}</value>
-  </data>
-  <data name="Menu.Behaviour.BackgroundUpdates.Title" xml:space="preserve">
-    <value>Updates op de achtergrond</value>
-  </data>
-  <data name="Menu.Behaviour.BackgroundUpdates.Description" xml:space="preserve">
-    <value>Update Roblox op de achtergrond in plaats van te wachten. Niet aanbevolen voor langzame netwerken. Ten minste 3 GB aan vrije opslagruimte is vereist om deze functie te laten werken.</value>
   </data>
   <data name="CustomTheme.Templates.Blank.UIElements" xml:space="preserve">
     <value>Zet UI elementen hier</value>
@@ -1393,5 +1387,131 @@ Word ingesteld op de standaard {1}.</value>
   </data>
   <data name="CustomTheme.Editor.Errors.PreviewFailed" xml:space="preserve">
     <value>Voorbeeld van thema mislukt: {0}</value>
+  </data>
+  <data name="Bootstrapper.ModificationsFailed.Title" xml:space="preserve">
+    <value>Toepassen van wijzigingen mislukt</value>
+  </data>
+  <data name="Bootstrapper.ModificationsFailed.Message" xml:space="preserve">
+    <value>Niet alle wijzigingen zullen aanwezig zijn in de huidige lancering.</value>
+  </data>
+  <data name="Bootstrapper.ExtractionFailed.Title" xml:space="preserve">
+    <value>Kon niet alle bestanden uitpakken</value>
+  </data>
+  <data name="Bootstrapper.ExtractionFailed.Message" xml:space="preserve">
+    <value>Er kan inhoud ontbreken. Forceer een Roblox herinstallatie in de instellingen om dit op te lossen.</value>
+  </data>
+  <data name="Menu.Integrations.MultiInstanceLaunching.Title" xml:space="preserve">
+    <value>Sta multi-instance toe.</value>
+  </data>
+  <data name="Menu.Integrations.MultiInstanceLaunching.Description" xml:space="preserve">
+    <value>Maakt het mogelijk om meer dan één Roblox spel client tegelijk te openen.</value>
+  </data>
+  <data name="Common.Rename" xml:space="preserve">
+    <value>Hernoemen</value>
+  </data>
+  <data name="Common.CreateNew" xml:space="preserve">
+    <value>Maak nieuw</value>
+  </data>
+  <data name="Menu.Behaviour.BackgroundUpdates.Title" xml:space="preserve">
+    <value>Updates op de achtergrond</value>
+  </data>
+  <data name="Menu.Behaviour.BackgroundUpdates.Description" xml:space="preserve">
+    <value>Update Roblox op de achtergrond in plaats van te wachten. Niet aanbevolen voor langzame netwerken. Ten minste 3 GB aan vrije opslagruimte is vereist om deze functie te laten werken.</value>
+  </data>
+  <data name="Common.Import" xml:space="preserve">
+    <value>Importeer</value>
+  </data>
+  <data name="Common.Edit" xml:space="preserve">
+    <value>Aanpassen</value>
+  </data>
+  <data name="About.Title" xml:space="preserve">
+    <value>Over Teststrap</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Enums.CursorType.Inverted" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.About.Contributors.Description2" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Menu.Teststrap.Description" xml:space="preserve">
+    <value>Configureer opties gerelateerd aan het gedrag van Teststrap zelf.</value>
+  </data>
+  <data name="Menu.Teststrap.Analytics.Title" xml:space="preserve">
+    <value>Het verzenden van analytics inschakelen</value>
+  </data>
+  <data name="Menu.Teststrap.Analytics.Description" xml:space="preserve">
+    <value>Het is anoniem en niets slecht, beloofd. Voor inzicht in wat we verzamelen en waarom, zie ons ({0}).</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.EscapeMenuVersion.Title" xml:space="preserve">
+    <value>Gewenste escape-menu-versie</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FPSLimit.Description" xml:space="preserve">
+    <value>Stel het in op 0 als je de standaard framesnelheid onvergrendeling van Roblox wilt gebruiken.</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FPSLimit.Title" xml:space="preserve">
+    <value>Framerate-limiet</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.HideGuis.Description" xml:space="preserve">
+    <value>Omschakelen met [sneltoetsen]({0}). Werkt alleen als je in de [Teststrap-groep]({1}) zit.</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.HideGuis.Title" xml:space="preserve">
+    <value>Mogelijkheid om GUI's te verbergen inschakelen</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.LightingTechnology.Description" xml:space="preserve">
+    <value>De gekozen lichttechnologie zal in alle spellen geforceerd ingeschakeld worden. [Let op, dit kan verlichtingsproblemen veroorzaken!]({0})</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.LightingTechnology.Title" xml:space="preserve">
+    <value>Voorkeur voor verlichtingstechnologie</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.DisablePostFX.Title" xml:space="preserve">
+    <value>Post-processing effecten uitschakelen</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FullscreenTitlebar.Title" xml:space="preserve">
+    <value>Volledig scherm titelbalk uitschakelen</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.DisablePlayerShadows.Title" xml:space="preserve">
+    <value>Spelerschaduw uitzetten</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FontPadding.Title" xml:space="preserve">
+    <value>Grootte van lettertype beheren</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.FontPadding.Description" xml:space="preserve">
+    <value>Standaardwaarde is 1. Pas aan als je een aangepast lettertype gebruikt.</value>
+  </data>
+  <data name="Menu.FastFlags.Presets.DisableTerrainTextures.Title" xml:space="preserve">
+    <value>Schakel terreintexturen uit</value>
+  </data>
+  <data name="Menu.About.Licenses.Apache" xml:space="preserve">
+    <value>Apache Licentie 2.0</value>
+  </data>
+  <data name="Menu.GBSEditor.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.GBSEditor.Transparency.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.GBSEditor.Transparency.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.GBSEditor.Graphics.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu.Teststrap.ExportData.Title" xml:space="preserve">
+    <value>Exporteer diagnostische gegevens</value>
+  </data>
+  <data name="Menu.Teststrap.ExportData.Description" xml:space="preserve">
+    <value>Verzamel informatie die online kan worden geüpload om een probleem op te lossen dat je hebt.</value>
+  </data>
+  <data name="Menu.Teststrap.ExportData.ExportConfig" xml:space="preserve">
+    <value>Teststrap configuratie</value>
+    <comment>Label that appears next to a checkbox</comment>
+  </data>
+  <data name="Menu.Teststrap.ExportData.ExportLogs" xml:space="preserve">
+    <value>Alle Teststrap logs</value>
+    <comment>Label that appears next to a checkbox</comment>
+  </data>
+  <data name="Menu_Bloxstrap_Description1" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>
